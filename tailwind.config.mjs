@@ -3,6 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -77,6 +78,9 @@ export default {
       },
     },
   },
-  
-  plugins: [require("@tailwindcss/typography")],
+
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwindcss-animated"),
+  ],
 };
