@@ -1,42 +1,68 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
-import "../styles/main.css"
-import '@fontsource/noto-sans';
-
+import Navbar from "../components/Navbar.astro";
+import "../styles/main.css";
+import "@fontsource/noto-sans";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Valentin TT portfolio" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Valentin TT portfolio" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navbar />
+    <div class="mx-0 sm:mx-4 md:mx-8">
+      <slot />
+    </div>
+  </body>
 </html>
 <style is:global>
- 
-	html {
-		font-family: system-ui, sans-serif;  
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: var(--background-50) var(--background-300);
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar-track {
+    border-radius: 6px;
+    border: 0px;
+    background-color: var(--background-50);
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    border: 0px;
+    background-color: var(--background-50);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border: 0px;
+    background-color: var(--background-300);
+  }
 </style>
