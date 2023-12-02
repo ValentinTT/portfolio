@@ -19,9 +19,9 @@ import "@fontsource/noto-sans";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-background-100 text-text-950">
     <Navbar />
-    <div class="mx-0 sm:mx-4 md:mx-8">
+    <div class="mx-auto sm:mx-4 md:mx-8 max-w-7xl">
       <slot />
     </div>
   </body>
