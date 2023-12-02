@@ -1,0 +1,21 @@
+---
+const { default: MeStanding } = await import("/src/svg/me-standing.svg?raw");
+const { default: MeSitting } = await import("/src/svg/me-sitting.svg?raw");
+---
+
+<hero
+  class="w-full lg:w-2/6 min-h-screen bg-background-200 flex flex-col justify-center items-center"
+>
+  <h1 class="pt-20 text-5xl font-medium lg:hidden">VALENTIN TT.</h1>
+  <div class="w-96 lg:hidden">
+    <Fragment set:html={MeSitting} />
+  </div>
+  <h2
+    class="text-center text-5xl bg-gradient-to-r from-primary-400 to-accent-950 bg-clip-text text-transparent font-medium my-5 lg:hidden z-10"
+  >
+    Software Developer.
+  </h2>
+  <div class="w-full max-w-md hidden lg:block">
+    <Fragment set:html={MeStanding} />
+  </div>
+</hero>
