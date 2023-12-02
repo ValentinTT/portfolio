@@ -3,27 +3,52 @@
 ---
 
 <nav
-  class="fixed w-full top-0 left-0 px-0 sm:px-4 md:px-8 backdrop-blur-md h-16 z-50 flex"
+  class="fixed w-full top-0 left-0 px-0 sm:px-4 md:px-8 h-16 z-50 transition-all"
 >
-  <div
-    class="mr-5 h-full flex items-center shadow-background-900 transition-all hover:shadow-md hover:animate-jump"
-  >
-    <a
-      href="#"
-      class="text-xl font-bold text-text-800 rounded-md border-2 p-2 border-text-800 ml-2 md:ml-0"
-      >TT</a
-    >
+  <div class="relative container mx-auto h-full">
+    <div class="h-full flex items-center">
+      <div
+        class="mr-5 h-full flex items-center shadow-background-900 transition-all hover:animate-jump"
+      >
+        <a
+          href="#"
+          class="text-xl font-bold text-text-800 rounded-md border-2 p-2 border-text-800 ml-2 md:ml-1"
+          >TT</a
+        >
+      </div>
+      <div
+        class="col-span-1 row-span-1 h-full flex items-center font-normal dark:font-semibold space-x-4 text-text-800 transition-colors duration-200"
+      >
+        <a href="#about" class="hover:text-text-950">About</a>
+        <a href="#tech" class="hover:text-text-950">Technologies</a>
+        <a href="#project" class="hover:text-text-950">Projects</a>
+        <a href="#blog" class="hover:text-text-950">Blog</a>
+        <a href="#contact" class="hover:text-text-950">Contact me</a>
+      </div>
+    </div>
   </div>
-  <div
-    class="h-full flex items-center font-normal dark:font-semibold space-x-4 text-text-800 transition-colors duration-200"
-  >
-    <a href="#about" class="hover:text-text-950">About</a>
-    <a href="#tech" class="hover:text-text-950">Technologies</a>
-    <a href="#project" class="hover:text-text-950">Projects</a>
-    <a href="#blog" class="hover:text-text-950">Blog</a>
-    <a href="#contact" class="hover:text-text-950">Contact me</a>
-  </div>
-  <span
-    class="hidden sm:inline-block absolute -bottom-3 sm:left-4 md:left-8 sm:right-4 md:right-8 h-3 rounded-md max-w-7xl rounded-b-none border-[1px] border-b-0 border-text-800"
-  ></span>
 </nav>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.getElementsByTagName("nav")[0];
+    // Check the scroll position
+    if (window.scrollY > 30) {
+      // Change 50 to the desired scroll position
+      navbar.classList.add("scrolled"); // Add a class to change navbar color
+    } else {
+      navbar.classList.remove("scrolled"); // Remove the class if scroll position is less than 50
+    }
+  });
+</script>
+
+<style>
+  .scrolled {
+    --tw-backdrop-blur: blur(12px);
+    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+      var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+      var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+      var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+      var(--tw-backdrop-sepia);
+  }
+</style>
