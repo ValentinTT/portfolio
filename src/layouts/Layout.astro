@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import Cursor from "../components/Cursor.astro";
 import Navbar from "../components/Navbar.astro";
 import "../styles/main.css";
 import "@fontsource/noto-sans";
@@ -25,10 +26,11 @@ import "@fontsource/noto-sans";
       class="min-h-screen container mx-auto scroll-smooth sm:shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
     >
       <span
-        class="hidden sm:inline-block fixed container top-16 h-3 rounded-md rounded-b-none border-[1px] border-b-0 border-text-800 z-50 opacity-0 transition-all"
+        class="hidden lg:inline-block fixed container top-16 h-3 rounded-md rounded-b-none border-[1px] border-b-0 border-text-800 z-50 opacity-0 transition-all"
         id="border-top"></span>
       <slot />
     </main>
+    <Cursor />
   </body>
 </html>
 <style is:global>
@@ -70,6 +72,16 @@ import "@fontsource/noto-sans";
     border: 0px;
     background-color: var(--background-300);
   }
+
+  *::selection {
+    background-color: var(--background-950);
+    color: var(--text-50);
+    mix-blend-mode: multiply;
+  }
+
+  .scrolled {
+    opacity: 1;
+  }
 </style>
 
 <script>
@@ -83,9 +95,3 @@ import "@fontsource/noto-sans";
     }
   });
 </script>
-
-<style>
-  .scrolled {
-    opacity: 1;
-  }
-</style>

@@ -1,0 +1,113 @@
+---
+
+---
+
+<div class="cursor transition-all"></div>
+
+<script>
+  const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
+
+  class Cursor {
+    target: { x: number; y: number };
+    cursor: { x: number; y: number };
+    speed: number;
+    raf: any;
+    constructor() {
+      // config
+      this.target = { x: 0.5, y: 0.5 }; // mouse position
+      this.cursor = { x: 0.5, y: 0.5 }; // cursor position
+      this.speed = 0.2;
+      this.init();
+    }
+    bindAll() {
+      (["onMouseMove", "render"] as (keyof Cursor)[]).forEach(
+        (fn) => (this[fn] = this[fn].bind(this))
+      );
+    }
+    onMouseMove(e: { clientX: number; clientY: number }) {
+      //get normalized mouse coordinates [0, 1]
+      this.target.x = e.clientX / window.innerWidth;
+      this.target.y = e.clientY / window.innerHeight;
+      // trigger loop if no loop is active
+      if (!this.raf) this.raf = requestAnimationFrame(this.render);
+    }
+    render() {
+      //calculate lerped values
+      this.cursor.x = lerp(this.cursor.x, this.target.x, this.speed);
+      this.cursor.y = lerp(this.cursor.y, this.target.y, this.speed);
+      document.documentElement.style.setProperty(
+        "--cursor-x",
+        "" + this.cursor.x
+      );
+      document.documentElement.style.setProperty(
+        "--cursor-y",
+        "" + this.cursor.y
+      );
+      //cancel loop if mouse stops moving
+      const delta = Math.sqrt(
+        Math.pow(this.target.x - this.cursor.x, 2) +
+          Math.pow(this.target.y - this.cursor.y, 2)
+      );
+      if (delta < 0.001) {
+        cancelAnimationFrame(this.raf);
+        this.raf = null;
+        return;
+      }
+      //or continue looping if mouse is moving
+      this.raf = requestAnimationFrame(this.render);
+    }
+    init() {
+      this.bindAll();
+      window.addEventListener("mousemove", this.onMouseMove);
+      this.raf = requestAnimationFrame(this.render);
+    }
+  }
+
+  new Cursor();
+
+  var cursor = document.querySelector(".cursor");
+  var links = document.querySelectorAll("a");
+
+  for (var i = 0; i < links.length; i++) {
+    var selfLink = links[i];
+
+    selfLink.addEventListener("mouseover", function () {
+      if (cursor === null) return;
+      cursor.classList.add("custom-cursor--link");
+    });
+    selfLink.addEventListener("mouseout", function () {
+      if (cursor === null) return;
+      cursor.classList.remove("custom-cursor--link");
+    });
+  }
+</script>
+<style>
+  .cursor {
+    --size: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: var(--size);
+    width: var(--size);
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translate3d(
+      calc(100vw * var(--cursor-x) - var(--size) / 2),
+      calc(100vh * var(--cursor-y) - var(--size) / 2),
+      0
+    );
+    transition-timing-function: ease-out;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 1000;
+  }
+  .custom-cursor--link {
+    --size: 10px;
+    transform: translate3d(
+        calc(100vw * var(--cursor-x) - var(--size) / 2),
+        calc(100vh * var(--cursor-y) - var(--size) / 2),
+        0
+      )
+      scale(5);
+  }
+</style>
