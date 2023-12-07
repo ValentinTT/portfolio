@@ -6,18 +6,20 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Valentin TT">
   <About />
   <section
-    class="min-h-screen w-full flex justify-center items-center bg-background-200 text-secondary-50"
+    class="min-h-screen w-full max-w-full flex flex-col items-center bg-background-200 text-secondary-50 space-y-5 overflow-hidden"
     id="tech"
   >
-    <h1>Technologies</h1>
+    <h1 class="text-text-950 text-2xl">Technologies</h1>
   </section>
+  <section
+    class="min-h-screen w-full max-w-full flex flex-col items-center bg-background-200 text-secondary-50 space-y-5 overflow-hidden"
+    id="tech"
+  >
+  </section>
+  <!-- <script
+    src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"
+    is:inline></script>
+  <script>
+    var rellax = new Rellax(".rellax");
+  </script> -->
 </Layout>
-
-<style></style>
-<script
-  src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"
-  is:inline></script>
-
-<script>
-  var rellax = new Rellax(".rellax");
-</script>
