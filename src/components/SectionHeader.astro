@@ -1,0 +1,48 @@
+---
+const { className } = Astro.props;
+---
+
+<h1
+  class:list={[
+    "ml-2 md:ml-0 text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-medium tracking-tight text-text inline",
+    className,
+  ]}
+  id="section-header"
+>
+  <span id="highlight"></span>
+  <slot />
+</h1>
+
+<style>
+  h1 {
+    position: relative;
+    z-index: 1;
+  }
+  h1 > span {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 45%;
+    border-radius: 2px;
+    background-color: var(--text-500);
+    bottom: 0;
+    left: 0;
+    transition: background-size 0.3s ease-in-out;
+    z-index: -1;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  gsap.utils.toArray("#section-header>#highlight").forEach((elem) => {
+    gsap.to(elem as Element, {
+      scrollTrigger: {
+        start: "top center",
+        end: "bottom center",
+        trigger: elem as Element,
+      },
+      width: "100%",
+      duration: 1.2,
+    });
+  });
+</script>
