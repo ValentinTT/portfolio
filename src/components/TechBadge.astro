@@ -1,0 +1,18 @@
+---
+let { fromToVia } = Astro.props;
+if (fromToVia === undefined)
+  fromToVia = "from-primary-300 via-accent-500 to-accent-800";
+---
+
+<h3
+  class:list={[
+    "bg-gradient-to-r p-0.5 bg-[length:_500%_500%] animate-border [animation-duration:_6s] rounded-full m-2 backdrop-blur dark:p-[0.075rem]",
+    fromToVia,
+    // "dark:bg-[length:_0%_0%] dark:p-0",
+  ]}
+>
+  <span
+    class="p-0.5 px-3 rounded-full bg-text dark:bg-text-300 text-background dark:text-text select-none"
+    ><slot /></span
+  >
+</h3>
