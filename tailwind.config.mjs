@@ -11,6 +11,7 @@ export default {
       },
       colors: {
         text: {
+          DEFAULT: "var(--text)",
           50: "var(--text-50)",
           100: "var(--text-100)",
           200: "var(--text-200)",
@@ -24,6 +25,7 @@ export default {
           950: "var(--text-950)",
         },
         background: {
+          DEFAULT: "var(--background)",
           50: "var(--background-50)",
           100: "var(--background-100)",
           200: "var(--background-200)",
@@ -37,6 +39,7 @@ export default {
           950: "var(--background-950)",
         },
         primary: {
+          DEFAULT: "var(--primary)",
           50: "var(--primary-50)",
           100: "var(--primary-100)",
           200: "var(--primary-200)",
@@ -50,6 +53,7 @@ export default {
           950: "var(--primary-950)",
         },
         secondary: {
+          DEFAULT: "var(--secondary)",
           50: "var(--secondary-50)",
           100: "var(--secondary-100)",
           200: "var(--secondary-200)",
@@ -63,6 +67,7 @@ export default {
           950: "var(--secondary-950)",
         },
         accent: {
+          DEFAULT: "var(--accent)",
           50: "var(--accent-50)",
           100: "var(--accent-100)",
           200: "var(--accent-200)",
@@ -74,6 +79,15 @@ export default {
           800: "var(--accent-800)",
           900: "var(--accent-900)",
           950: "var(--accent-950)",
+        },
+      },
+      animation: {
+        border: "background ease infinite",
+      },
+      keyframes: {
+        background: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
         },
       },
     },
