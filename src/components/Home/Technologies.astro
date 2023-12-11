@@ -1,0 +1,148 @@
+---
+import SectionHeader from "../SectionHeader.astro";
+import TechBadge from "../TechBadge.astro";
+---
+
+<section
+  class="bg-transparent overflow-hidden"
+  id="tech"
+  data-color="#f4fbf8"
+  data-color-dark="#040b08"
+>
+  <SectionHeader>TECHNOLOGIES.</SectionHeader>
+  <div class="ml-4 mt-4 space-y-4">
+    <div>
+      <h2 class="text-xl sm:text-3xl w-fit" id="tech-kind-title">Frontend</h2>
+      <div class="flex ml-4 mt-2 flex-wrap" id="tech-kind">
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+        >
+          Next.js
+        </TechBadge>
+
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+        >
+          React
+        </TechBadge>
+
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+        >
+          Astro
+        </TechBadge>
+
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+        >
+          TypeScript
+        </TechBadge>
+
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+        >
+          Tailwind CSS
+        </TechBadge>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-3xl w-fit" id="tech-kind-title">Backend</h2>
+      <div class="flex ml-4 mt-2 flex-wrap" id="tech-kind" id="tech-kind">
+        <TechBadge
+          fromToVia="from-pink-500 via-red-500 to-yellow-500 dark:bg-gradient-to-r dark:from-emerald-500 dark:to-lime-600"
+        >
+          Java Springboot
+        </TechBadge>
+        <TechBadge
+          fromToVia="from-pink-500 via-red-500 to-yellow-500 dark:bg-gradient-to-r dark:from-emerald-500 dark:to-lime-600"
+        >
+          Node.js
+        </TechBadge>
+        <TechBadge
+          fromToVia="from-pink-500 via-red-500 to-yellow-500 dark:bg-gradient-to-r dark:from-emerald-500 dark:to-lime-600"
+        >
+          Express.js
+        </TechBadge>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-3xl w-fit" id="tech-kind-title">Database</h2>
+      <div class="flex ml-4 mt-2 flex-wrap" id="tech-kind">
+        <TechBadge>PostgreSQL</TechBadge>
+        <TechBadge>MongoDB</TechBadge>
+        <TechBadge>GraphQL</TechBadge>
+        <TechBadge>SQL Server</TechBadge>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-3xl w-fit" id="tech-kind-title">Low Level</h2>
+      <div class="flex ml-4 mt-2 flex-wrap p-0.5" id="tech-kind">
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+        >
+          C
+        </TechBadge>
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+        >
+          Arduino
+        </TechBadge>
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+        >
+          Rust
+        </TechBadge>
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400"
+        >
+          IDA
+        </TechBadge>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-3xl w-fit" id="tech-kind-title">Mobile</h2>
+      <div class="flex ml-4 mt-2 flex-wrap" id="tech-kind" id="tech-kind">
+        <TechBadge fromToVia="bg-gradient-to-b from-sky-400 to-sky-200">
+          Dart
+        </TechBadge>
+
+        <TechBadge fromToVia="bg-gradient-to-b from-sky-400 to-sky-200">
+          Flutter
+        </TechBadge>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.utils.toArray("#tech-kind").forEach((elem) => {
+    ScrollTrigger.create({
+      start: "-100 90%",
+      end: "-60 90%",
+      trigger: elem as Element,
+      once: true,
+      onEnter: () => {
+        gsap.from((elem as Element).children, {
+          y: 100,
+          opacity: 0.1,
+          duration: 0.7,
+          stagger: 0.05,
+        });
+      },
+    });
+  });
+  gsap.utils.toArray("#tech-kind-title").forEach((elem) => {
+    gsap.from(elem as Element, {
+      scrollTrigger: {
+        start: "top 90%",
+        end: "bottom 90%",
+        trigger: elem as Element,
+      },
+      x: "-100%",
+      opacity: 0.1,
+      duration: 0.7,
+    });
+  });
+</script>
