@@ -2,9 +2,9 @@
 import SpotlightCardsContainer from "../Cards/SpotlightCardsContainer.astro";
 import SpotlightCard from "../Cards/SpotlightCard.astro";
 import SectionHeader from "../SectionHeader.astro";
-import { Icon } from "astro-icon/components";
-
-import { Image } from "astro:assets";
+import ProjectCard from "./Project/ProjectCard.astro";
+import ImageLogo from "./Project/ImageLogo.astro";
+import ProjectStack from "./Project/ProjectStack.astro";
 ---
 
 <!-- background 50, background 50-->
@@ -26,68 +26,31 @@ import { Image } from "astro:assets";
             via="#4519b3"
             class="bg-background dark:bg-zinc-950 text-text sm:h-96 w-[30rem]"
           >
-            <article class="flex flex-col w-full h-full p-10">
-              <header class="flex space-x-5 items-center">
-                <Image
-                  src="/src/svg/projects/bee-watcher-logo.png"
-                  alt="A bird."
-                  width="50"
-                  height="50"
-                  class="bg-transparent rounded-full border-2 border-zinc-900 overflow-hidden"
-                />
-                <h3 class="py-5 text-3xl tracking-tighter font-normal">
-                  Bee Watcher
-                </h3>
-              </header>
-              <main class="py-4 space-y-5">
-                <p class="text-zinc-700 dark:text-zinc-400">
-                  Radio frequency networked Arduinos gather internal hives' data
-                  (temperature, humidity, position and motion). They are then
-                  sent to a central unit for micro SD logging and emergency SMS
-                  alerts.
-                </p>
-                <div class="flex">
-                  {["Arduino", "C", "Next.js"].map((stack) => {
-                    return (
-                      <span class="bg-background dark:bg-zinc-900 border border-zinc-500 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 rounded-md mr-3 px-2 select-none">
-                        {stack}
-                      </span>
-                    );
-                  })}
-                </div>
-              </main>
-              <footer class="mt-auto flex space-x-2">
-                <a
-                  href=""
-                  class="bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group"
-                >
-                  <span>Blog</span>
-                  <span class="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all">
-                    <Icon
-                      name="arrow-up-right"
-                      class="h-5 w-5 text-text dark:text-background"
-                    />
-                  </span>
-                </a>
-                <a
-                  href=""
-                  class="bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group"
-                >
-                  <span>Code</span>
-                  <span class="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all">
-                    <Icon
-                      name="code"
-                      class="h-7 w-7 text-text dark:text-background"
-                    />
-                  </span>
-                </a>
-              </footer>
-            </article>
+            <ProjectCard
+              title="Bee Watcher"
+              codeLink="https://github.com/ValentinTT"
+              blogLink="http://localhost:4321"
+            >
+              <ImageLogo
+                src="/src/svg/projects/bee-watcher-logo.png"
+                alt="Bee watcher logo"
+                slot="logo"
+              />
+
+              <p class="text-zinc-700 dark:text-zinc-400">
+                Radio frequency networked Arduinos gather internal hives' data
+                (temperature, humidity, position and motion). They are then sent
+                to a central unit for micro SD logging and emergency SMS alerts.
+              </p>
+              <div class="flex">
+                {["Arduino", "C", "Next.js"].map((stack) => {
+                  return <ProjectStack stackName={stack} />;
+                })}
+              </div>
+            </ProjectCard>
           </SpotlightCard>
         );
       })
     }
   </SpotlightCardsContainer>
 </section>
-
-<style></style>

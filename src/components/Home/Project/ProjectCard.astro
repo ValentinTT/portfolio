@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { title, codeLink, blogLink } = Astro.props;
+---
+
+<article class="flex flex-col w-full h-full p-10">
+  <header class="flex space-x-5 items-center">
+    <slot name="logo" />
+    <h3 class="py-5 text-3xl tracking-tighter font-normal">{title}</h3>
+  </header>
+  <main class="py-4 space-y-5">
+    <slot />
+  </main>
+  <footer class="mt-auto flex space-x-2">
+    {
+      blogLink !== undefined && blogLink !== "" && (
+        <a
+          href={blogLink}
+          class="bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group"
+        >
+          <span>Blog</span>
+          <span class="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all">
+            <Icon
+              name="arrow-up-right"
+              class="h-5 w-5 text-text dark:text-background"
+            />
+          </span>
+        </a>
+      )
+    }
+    <a
+      href={codeLink}
+      target="_blank"
+      class="bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group"
+    >
+      <span>Code</span>
+      <span
+        class="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all"
+      >
+        <Icon name="code" class="h-7 w-7 text-text dark:text-background" />
+      </span>
+    </a>
+  </footer>
+</article>

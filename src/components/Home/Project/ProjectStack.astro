@@ -1,0 +1,12 @@
+---
+const { stackName, class: className } = Astro.props;
+---
+
+<span
+  class:list={[
+    "bg-background dark:bg-zinc-900 border border-zinc-500 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 rounded-md mr-3 px-2 select-none",
+    className,
+  ]}
+>
+  {stackName}
+</span>

@@ -1,0 +1,15 @@
+---
+import { Image } from "astro:assets";
+const { src, alt, class: className, w, h } = Astro.props;
+---
+
+<Image
+  src={src}
+  alt={alt ?? ""}
+  width={w ?? "50"}
+  height={h ?? "50"}
+  class:list={[
+    "bg-transparent rounded-full border-2 border-zinc-900 overflow-hidden",
+    className,
+  ]}
+/>
