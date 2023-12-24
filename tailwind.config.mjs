@@ -6,6 +6,10 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        xs: "475px",
+        ...defaultTheme.screens,
+      },
       fontFamily: {
         sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
       },

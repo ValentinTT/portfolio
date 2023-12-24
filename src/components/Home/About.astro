@@ -2,37 +2,50 @@
 import Hero from "./Hero.astro";
 ---
 
+<!-- background 100, background 100-->
 <section
-  class="min-h-screen w-full flex flex-col-reverse lg:flex-row justify-between items-center lg:pl-6 lg:bg-background bg-transparent lg:mb-5"
+  class="min-h-screen w-full flex flex-col-reverse lg:flex-row justify-between items-center lg:pl-6 lg:bg-background-50 bg-transparent lg:mb-5"
   id="about"
-  data-color="#daf1e7"
-  data-color-dark="#0e251b"
+  data-color="#d1eafa"
+  data-color-dark="#051e2e"
 >
   <header class="w-full lg:w-4/6 lg:pt-16 flex flex-col">
     <h1 class="text-8xl font-medium hidden lg:inline tracking-tight">
       VALENTIN TT.
     </h1>
     <h2
-      class="max-w-max text-5xl bg-gradient-to-r from-primary-400 to-accent-950 bg-clip-text text-transparent font-medium my-5 hidden lg:inline tracking-tight"
+      class="max-w-max text-5xl bg-gradient-to-r from-primary-600 to-accent-950 dark:from-primary-400 dark:to-primary-700 bg-clip-text text-transparent font-medium my-5 hidden lg:inline tracking-tight"
     >
       Software Developer.
     </h2>
-    <p
-      class="max-w-4xl lg:pr-10 xl:pr-52 lg:pt-6 px-5 lg:px-0 py-3 lg:py-0 mx-3 sm:mx-16 my-10 lg:mx-0 border border-text-500 lg:border-0 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.18)] lg:shadow-none z-10 bg-background-50 lg:bg-transparent"
+    <!-- <p
+      class="max-w-4xl lg:pr-10 xl:pr-52 lg:pt-6 px-5 lg:px-0 p-3 lg:py-0 mx-3 sm:mr-16 mt-5 lg:mx-0 border border-text-500 lg:border-0 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.18)] lg:shadow-none z-10 bg-background-50 lg:bg-transparent"
     >
-      <!-- TODO: bg-background 200 or 100 or 300? -->
-       Hey there! 👋 I'm Valentin TT, an enthusiastic Information Systems
-      Engineer with a passion for technology and a knack for building things
-      from scratch. I'm a coding enthusiast 💻 with experience as a frontend
-      developer. Other passions include: reverse engineering 🔍, cyber security
-      🔒, electronics ⚡, open-source, and more. <br /><br /> I thrive in
-      diverse groups, seeking to enhance my learning experience through
-      collaboration. 🌟 I strongly believe in the power of teamwork 🤝 as it
-      fosters creativity and allows learning from varied perspectives. Effective
-      communication 🗣️ is my forte, aiding me in expressing complex technical
-      concepts clearly. I'm committed to continuous learning 📚, propelled by
-      the ever-evolving tech landscape.
+      Hey there! 👋 I'm Valentin TT, a
+      <span
+        class="font-semibold text-emerald-600 dark:first-letter:text-emerald-400 italic"
+        >Full-stack</span
+      > Web Developer who loves working with
+      <span class="font-semibold text-pink-500 italic">React</span>. I'm all
+      about learning through teamwork and collaboration! I strongly believe that
+      when we work together, creativity thrives. Communication is key to keep
+      learning and growing.
     </p>
+    <p
+      class="max-w-4xl lg:pr-10 xl:pr-52 lg:pt-6 px-5 lg:px-0 py-3 lg:py-0 mx-3 sm:ml-16 my-5 lg:mx-0 border border-text-500 lg:border-0 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.18)] lg:shadow-none z-10 bg-background-50 lg:bg-transparent"
+    >
+      Beyond web development, I'm into cybersecurity, reverse engineering,
+      electronics, and contributing to <span
+        class="font-semibold text-accent-700 italic">open-source</span
+      > projects. Exploring these, not only adds to my skills but also keeps my
+      excitement alive for solving problems and coming up with new ideas.
+    </p> -->
   </header>
   <Hero />
 </section>
+<style>
+  p {
+    font-size: clamp(1rem, 0.8852rem + 0.5898vw, 1.375rem);
+    text-wrap: stable;
+  }
+</style>

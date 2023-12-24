@@ -3,13 +3,14 @@ import SectionHeader from "../SectionHeader.astro";
 import TechBadge from "../TechBadge.astro";
 ---
 
+<!-- background , background -->
 <section
-  class="bg-transparent overflow-hidden"
+  class="bg-transparent overflow-hidden pt-16"
   id="tech"
-  data-color="#f4fbf8"
-  data-color-dark="#040b08"
+  data-color="#e8f5fc"
+  data-color-dark="#030f17"
 >
-  <SectionHeader>TECHNOLOGIES.</SectionHeader>
+  <SectionHeader>STACK.</SectionHeader>
   <div class="ml-4 mt-4 space-y-4">
     <div>
       <h2 class="text-xl sm:text-3xl w-fit" id="tech-kind-title">Frontend</h2>
@@ -42,6 +43,11 @@ import TechBadge from "../TechBadge.astro";
           fromToVia="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
         >
           Tailwind CSS
+        </TechBadge>
+        <TechBadge
+          fromToVia="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+        >
+          GSAP
         </TechBadge>
       </div>
     </div>
@@ -121,14 +127,14 @@ import TechBadge from "../TechBadge.astro";
     ScrollTrigger.create({
       start: "-100 90%",
       end: "-60 90%",
-      trigger: elem as Element,
+      trigger: "#tech",
       once: true,
       onEnter: () => {
         gsap.from((elem as Element).children, {
           y: 100,
           opacity: 0.1,
           duration: 0.7,
-          stagger: 0.05,
+          stagger: 0.1,
         });
       },
     });
@@ -138,7 +144,7 @@ import TechBadge from "../TechBadge.astro";
       scrollTrigger: {
         start: "top 90%",
         end: "bottom 90%",
-        trigger: elem as Element,
+        trigger: "#tech",
       },
       x: "-100%",
       opacity: 0.1,
