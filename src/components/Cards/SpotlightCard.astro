@@ -1,0 +1,113 @@
+---
+let { class: cardClasses, contentClasses, from, via } = Astro.props;
+
+if (from === undefined) from = "#4235d4";
+if (via === undefined) via = from;
+
+function hexToRgb(hex: string): string | null {
+  // Check if the hex value is a valid 6-digit hex color code
+  const validHex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!validHex) {
+    return null; // Invalid hex color code
+  }
+
+  // Extract R, G, B values from the hex code and convert to decimal
+  const r = parseInt(validHex[1], 16);
+  const g = parseInt(validHex[2], 16);
+  const b = parseInt(validHex[3], 16);
+
+  return `${r}, ${g}, ${b}`; // Return the "R, G, B" format
+}
+---
+
+<div class:list={["card shadow-md ", cardClasses]}>
+  <div
+    class:list={[
+      "card-content bg-transparent z-10 overflow-hidden",
+      contentClasses,
+    ]}
+  >
+    <slot />
+  </div>
+</div>
+<style define:vars={{ fromColor: hexToRgb(from), viaColor: hexToRgb(via) }}>
+  .card {
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 0.15s;
+    z-index: 3;
+    transform-style: preserve-3d;
+    transition: all;
+    transition-duration: 1s;
+  }
+  /* hover glow */
+  .card::after {
+    content: "";
+    height: calc(100%);
+    width: calc(100%);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: inherit;
+    transition: all 0.2s ease-in-out;
+    z-index: 5;
+    opacity: 0;
+    background: radial-gradient(
+      40rem circle at var(--xPos) var(--yPos),
+      rgb(var(--fromColor), 0.1) 0%,
+      rgb(var(--viaColor), 0.1) 40%,
+      transparent 50%
+    );
+  }
+  html.dark .card::after {
+    background: radial-gradient(
+      40rem circle at var(--xPos) var(--yPos),
+      rgb(var(--fromColor), 0.05) 0%,
+      rgb(var(--viaColor), 0.05) 40%,
+      transparent 50%
+    );
+  }
+  .card:hover::after {
+    opacity: 1;
+  }
+  .card .card-content {
+    border-radius: inherit;
+    transition: all 0.25s;
+    height: calc(100%);
+    width: calc(100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* border */
+  .card::before {
+    content: "";
+    height: calc(100% + 2px);
+    width: calc(100% + 2px);
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    border-radius: inherit;
+    transition: all 0.15s ease-in-out;
+    transform: translateZ(-1px);
+    opacity: 0;
+    background: radial-gradient(
+      50rem circle at var(--xPos) var(--yPos),
+      rgb(var(--fromColor)) 0%,
+      rgb(var(--viaColor)) 10%,
+      transparent 40%
+    );
+    /* background: linear-gradient(
+      rgb(var(--fromColor)) 0%,
+      rgb(var(--viaColor)) 10%
+    ); */
+  }
+</style>
+<style is:global>
+  .cards-container:hover .card::before {
+    opacity: 1;
+  }
+</style>
