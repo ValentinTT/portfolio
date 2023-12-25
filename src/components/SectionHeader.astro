@@ -1,12 +1,17 @@
 ---
-const { class: className } = Astro.props;
+export interface Props {
+  class?: string;
+}
+
+const { class: className, ...attributes } = Astro.props;
 ---
 
 <h1
   class:list={[
-    "ml-2 md:ml-0 text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-medium tracking-tight text-text inline",
+    "ml-2 md:ml-0 text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-medium tracking-tight text-text w-fit",
     className,
   ]}
+  {...attributes}
   id="section-header"
 >
   <span id="highlight"></span>

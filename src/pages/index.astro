@@ -1,5 +1,6 @@
 ---
 import About from "../components/Home/About.astro";
+import Blog from "../components/Home/Blog.astro";
 import Projects from "../components/Home/Projects.astro";
 import Technologies from "../components/Home/Technologies.astro";
 import Layout from "../layouts/Layout.astro";
@@ -9,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
   <About />
   <Technologies />
   <Projects />
-
+  <Blog />
   <script
     src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"
     is:inline></script>
@@ -40,8 +41,8 @@ import Layout from "../layouts/Layout.astro";
 
         return ScrollTrigger.create({
           trigger: elem as Element,
-          start: "top 70%",
-          end: "bottom 70%",
+          start: "top 50%",
+          end: "bottom 50%",
           onEnter: () =>
             gsap.to("body", {
               backgroundColor: color,

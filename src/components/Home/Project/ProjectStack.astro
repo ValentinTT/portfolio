@@ -1,4 +1,9 @@
 ---
+export interface Props {
+  stackName: string;
+  class?: string;
+}
+
 const { stackName, class: className } = Astro.props;
 ---
 

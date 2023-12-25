@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  link: string;
+  icon: string;
+  class?: string;
+  iconClass?: string;
+}
+
+const { link, icon, class: className, iconClass } = Astro.props;
+---
+
+<a
+  href={link}
+  target="_blank"
+  class:list={[
+    "bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group",
+    className,
+  ]}
+>
+  <span><slot /></span>
+  <span
+    class="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all"
+  >
+    <Icon
+      name={icon}
+      class:list={["h-7 w-7 text-text dark:text-background", iconClass]}
+    />
+  </span>
+</a>

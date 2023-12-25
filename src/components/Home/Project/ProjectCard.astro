@@ -1,5 +1,11 @@
 ---
-import { Icon } from "astro-icon/components";
+import LinkButton from "../../LinkButton.astro";
+
+export interface Props {
+  title: string;
+  codeLink: string;
+  blogLink?: string;
+}
 
 const { title, codeLink, blogLink } = Astro.props;
 ---
@@ -15,31 +21,11 @@ const { title, codeLink, blogLink } = Astro.props;
   <footer class="mt-auto flex space-x-2">
     {
       blogLink !== undefined && blogLink !== "" && (
-        <a
-          href={blogLink}
-          class="bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group"
-        >
-          <span>Blog</span>
-          <span class="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all">
-            <Icon
-              name="arrow-up-right"
-              class="h-5 w-5 text-text dark:text-background"
-            />
-          </span>
-        </a>
+        <LinkButton link={blogLink} icon="arrow-up-right">
+          Blog
+        </LinkButton>
       )
     }
-    <a
-      href={codeLink}
-      target="_blank"
-      class="bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group"
-    >
-      <span>Code</span>
-      <span
-        class="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all"
-      >
-        <Icon name="code" class="h-7 w-7 text-text dark:text-background" />
-      </span>
-    </a>
+    <LinkButton link={codeLink} icon="code">Code</LinkButton>
   </footer>
 </article>

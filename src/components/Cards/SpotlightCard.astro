@@ -1,4 +1,11 @@
 ---
+export interface Props {
+  class?: string;
+  contentClasses?: string;
+  from?: string;
+  via?: string;
+}
+
 let { class: cardClasses, contentClasses, from, via } = Astro.props;
 
 if (from === undefined) from = "#4235d4";
