@@ -1,8 +1,9 @@
 ---
 import About from "../components/Home/About.astro";
-import Blog from "../components/Home/Blog.astro";
+import Blog from "../components/Home/Blogs.astro";
 import Projects from "../components/Home/Projects.astro";
 import Technologies from "../components/Home/Technologies.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -10,7 +11,15 @@ import Layout from "../layouts/Layout.astro";
   <About />
   <Technologies />
   <Projects />
-  <Blog />
+  <Blog /><section
+    class="min-h-screen w-full max-w-full bg-transparent text-secondary-50 space-y-5 overflow-hidden pt-16"
+    id="projects"
+    data-color="#d1eafa"
+    data-color-dark="#051e2e"
+  >
+    <SectionHeader class="mb-14">CONTACT ME.</SectionHeader>
+  </section>
+
   <script
     src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"
     is:inline></script>
