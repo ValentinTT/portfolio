@@ -5,6 +5,18 @@
 <div class="cursor transition-all"></div>
 
 <script>
+  import { isTouchScreen } from "../store.js";
+
+  function isTouchEnabled() {
+    return (
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      navigator.msMaxTouchPoints > 0
+    );
+  }
+
+  isTouchScreen.set(isTouchEnabled());
+
   const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
 
   class Cursor {
@@ -14,8 +26,8 @@
     raf: any;
     constructor() {
       // config
-      this.target = { x: 0.5, y: 0.5 }; // mouse position
-      this.cursor = { x: 0.5, y: 0.5 }; // cursor position
+      this.target = { x: 0.0, y: 0.0 }; // mouse position
+      this.cursor = { x: 0.0, y: 0.0 }; // cursor position
       this.speed = 0.2;
       this.init();
     }
@@ -63,22 +75,26 @@
     }
   }
 
-  new Cursor();
+  if (!isTouchScreen.get()) {
+    new Cursor();
 
-  var cursor = document.querySelector(".cursor");
-  var links = document.querySelectorAll("a");
+    var cursor = document.querySelector(".cursor");
+    var links = document.querySelectorAll("a");
 
-  for (var i = 0; i < links.length; i++) {
-    var selfLink = links[i];
+    for (var i = 0; i < links.length; i++) {
+      var selfLink = links[i];
 
-    selfLink.addEventListener("mouseover", function () {
-      if (cursor === null) return;
-      cursor.classList.add("custom-cursor--link");
-    });
-    selfLink.addEventListener("mouseout", function () {
-      if (cursor === null) return;
-      cursor.classList.remove("custom-cursor--link");
-    });
+      selfLink.addEventListener("mouseover", function () {
+        if (cursor === null) return;
+        cursor.classList.add("custom-cursor--link");
+      });
+      selfLink.addEventListener("mouseout", function () {
+        if (cursor === null) return;
+        cursor.classList.remove("custom-cursor--link");
+      });
+    }
+  } else {
+    (document.querySelector(".cursor") as HTMLElement).style.display = "none";
   }
 </script>
 <style>

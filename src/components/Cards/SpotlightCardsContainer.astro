@@ -11,11 +11,14 @@ const { class: className } = Astro.props;
 </div>
 
 <script>
+  import { isTouchScreen } from "../../store.js";
+
   const cards = document.querySelectorAll(".card");
   const wrapper = document.querySelector(".cards-container");
 
   if (wrapper !== null)
-    wrapper.addEventListener("mousemove", function ($event) {
+    wrapper.addEventListener("mousemove", ($event) => {
+      if (isTouchScreen.get()) return;
       cards.forEach((card) => {
         const rect = card.getBoundingClientRect();
         const x = $event.clientX - rect.left;
