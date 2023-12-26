@@ -42,8 +42,8 @@ const { class: className, ...attributes } = Astro.props;
   gsap.utils.toArray("#section-header>#highlight").forEach((elem) => {
     gsap.to(elem as Element, {
       scrollTrigger: {
-        start: "top center",
-        end: "bottom center",
+        start: "top 80%",
+        end: "bottom 80%",
         trigger: elem as Element,
       },
       width: "100%",
