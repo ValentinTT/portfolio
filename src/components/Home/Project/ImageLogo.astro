@@ -19,7 +19,7 @@ if (!images[src])
 ---
 
 <Image
-  src={src}
+  src={images[src]()}
   alt={alt ?? "Image Logo"}
   width={w ?? "50"}
   height={h ?? "50"}
