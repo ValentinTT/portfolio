@@ -1,9 +1,9 @@
 ---
 import About from "../components/Home/About.astro";
 import Blog from "../components/Home/Blogs.astro";
+import Contact from "../components/Home/Contact.astro";
 import Projects from "../components/Home/Projects.astro";
 import Technologies from "../components/Home/Technologies.astro";
-import SectionHeader from "../components/SectionHeader.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -11,82 +11,76 @@ import Layout from "../layouts/Layout.astro";
   <About />
   <Technologies />
   <Projects />
-  <Blog /><section
-    class="min-h-screen w-full max-w-full bg-transparent text-secondary-50 space-y-5 overflow-hidden pt-16"
-    id="projects"
-    data-color="#d1eafa"
-    data-color-dark="#051e2e"
-  >
-    <SectionHeader class="mb-14">CONTACT ME.</SectionHeader>
-  </section>
-
-  <script
-    src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"
-    is:inline></script>
-  <script>
-    var rellax = new Rellax(".rellax");
-  </script>
-
-  <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger);
-
-    const isBlackMode = (element: Element) =>
-      element.classList.contains("dark");
-
-    const generateAnimations: (
-      isDarkMode: boolean
-    ) => globalThis.ScrollTrigger[] = (isDarkMode) => {
-      return gsap.utils.toArray("section").map((elem) => {
-        let color =
-          (elem as Element).getAttribute(
-            isDarkMode ? "data-color-dark" : "data-color"
-          ) ??
-          (elem as Element).getAttribute(
-            !isDarkMode ? "data-color-dark" : "data-color"
-          ) ??
-          "#fff";
-
-        return ScrollTrigger.create({
-          trigger: elem as Element,
-          start: "top 50%",
-          end: "bottom 50%",
-          onEnter: () =>
-            gsap.to("body", {
-              backgroundColor: color,
-              duration: 1,
-            }),
-          onEnterBack: () =>
-            gsap.to("body", {
-              backgroundColor: color,
-              duration: 1,
-            }),
-        });
-      });
-    };
-
-    // Observer for the <html> element, in case there is a class name change
-    const htmlElement = document.getElementsByTagName("html")[0];
-    let currentModeIsBlack = isBlackMode(htmlElement);
-
-    //To cancel the animations when there is a theme change
-    let backgroundColorAnimations: globalThis.ScrollTrigger[] =
-      generateAnimations(currentModeIsBlack);
-    const observer = new MutationObserver((mutationsList, observer) => {
-      for (let mutation of mutationsList) {
-        if (
-          mutation.type === "attributes" &&
-          mutation.attributeName === "class"
-        ) {
-          if (currentModeIsBlack === isBlackMode(htmlElement)) continue;
-          currentModeIsBlack = !currentModeIsBlack;
-          backgroundColorAnimations.map((animation) => animation.kill());
-          backgroundColorAnimations = generateAnimations(currentModeIsBlack);
-        }
-      }
-    });
-    const config = { attributes: true, attributeFilter: ["class"] };
-    observer.observe(htmlElement, config);
-  </script>
+  <Blog />
+  <Contact />
 </Layout>
+
+<script
+  src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"
+  is:inline></script>
+<script>
+  // @ts-ignore
+  new Rellax(".rellax");
+</script>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const isBlackMode = (element: Element) => element.classList.contains("dark");
+
+  const generateAnimations: (
+    isDarkMode: boolean
+  ) => globalThis.ScrollTrigger[] = (isDarkMode) => {
+    return gsap.utils.toArray("section").map((elem) => {
+      let color =
+        (elem as Element).getAttribute(
+          isDarkMode ? "data-color-dark" : "data-color"
+        ) ??
+        (elem as Element).getAttribute(
+          !isDarkMode ? "data-color-dark" : "data-color"
+        ) ??
+        "#fff";
+
+      return ScrollTrigger.create({
+        trigger: elem as Element,
+        start: "top 50%",
+        end: "bottom 50%",
+        onEnter: () =>
+          gsap.to("body", {
+            backgroundColor: color,
+            duration: 1,
+          }),
+        onEnterBack: () =>
+          gsap.to("body", {
+            backgroundColor: color,
+            duration: 1,
+          }),
+      });
+    });
+  };
+
+  // Observer for the <html> element, in case there is a class name change
+  const htmlElement = document.getElementsByTagName("html")[0];
+  let currentModeIsBlack = isBlackMode(htmlElement);
+
+  //To cancel the animations when there is a theme change
+  let backgroundColorAnimations: globalThis.ScrollTrigger[] =
+    generateAnimations(currentModeIsBlack);
+  const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "class"
+      ) {
+        if (currentModeIsBlack === isBlackMode(htmlElement)) continue;
+        currentModeIsBlack = !currentModeIsBlack;
+        backgroundColorAnimations.map((animation) => animation.kill());
+        backgroundColorAnimations = generateAnimations(currentModeIsBlack);
+      }
+    }
+  });
+  const config = { attributes: true, attributeFilter: ["class"] };
+  observer.observe(htmlElement, config);
+</script>

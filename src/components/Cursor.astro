@@ -8,11 +8,7 @@
   import { isTouchScreen } from "../store.js";
 
   function isTouchEnabled() {
-    return (
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      navigator.msMaxTouchPoints > 0
-    );
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
   }
 
   isTouchScreen.set(isTouchEnabled());

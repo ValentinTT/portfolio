@@ -21,11 +21,11 @@ const { class: className } = Astro.props;
       if (isTouchScreen.get()) return;
       cards.forEach((card) => {
         const rect = card.getBoundingClientRect();
-        const x = $event.clientX - rect.left;
-        const y = $event.clientY - rect.top;
+        const x = ($event as any).clientX - rect.left;
+        const y = ($event as any).clientY - rect.top;
 
-        card.style.setProperty("--xPos", `${x}px`);
-        card.style.setProperty("--yPos", `${y}px`);
+        (card as any).style.setProperty("--xPos", `${x}px`);
+        (card as any).style.setProperty("--yPos", `${y}px`);
       });
     });
 </script>
