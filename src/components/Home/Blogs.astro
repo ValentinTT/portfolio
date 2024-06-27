@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 import LinkButton from "../LinkButton.astro";
 import BlogCard from "./Blog/BlogCard.astro";
 import { Icon } from "astro-icon/components";
-// import beeWatcherLogo from "../../svg/projects/bee-watcher-logo.png";
 ---
 
 <!-- background 50, background 50-->
@@ -26,7 +25,7 @@ import { Icon } from "astro-icon/components";
         return (
           <BlogCard
             title="Bee Watcher: Hives security system using Arduino"
-            imageSrc="/src/svg/projects/bee-watcher-logo.png"
+            imagePath="/src/assets/projects/bee-watcher-logo.png"
             gradient={i}
           />
         );
