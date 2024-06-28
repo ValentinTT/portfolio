@@ -10,12 +10,12 @@ if (fromToVia === undefined)
 
 <h3
   class:list={[
-    "bg-gradient-to-r p-0.5 bg-[length:_500%_500%] animate-border [animation-duration:_6s] rounded-full m-2 backdrop-blur dark:p-[0.075rem]",
+    "bg-gradient-to-r p-1 bg-[length:_400%_400%] animate-border [animation-duration:_4s] rounded-md backdrop-blur inline-block ",
     fromToVia,
   ]}
 >
   <span
-    class="p-0.5 px-3 rounded-full bg-text dark:bg-text-300 text-background dark:text-text select-none"
+    class="block rounded-md px-3 py-1 bg-black dark:bg-text-200 text-background dark:text-text select-none font-medium"
     ><slot /></span
   >
 </h3>
