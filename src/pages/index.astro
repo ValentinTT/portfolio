@@ -1,7 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import About from "../components/Home/About.astro";
 import Blog from "../components/Home/Blogs.astro";
-import Contact from "../components/Home/Contact.astro";
+import Contact from "../components/Home/Contact/Contact.astro";
 import Projects from "../components/Home/Projects.astro";
 import Technologies from "../components/Home/Technologies.astro";
 import Layout from "../layouts/Layout.astro";
@@ -13,6 +14,19 @@ import Layout from "../layouts/Layout.astro";
   <Projects />
   <Blog />
   <Contact />
+  <div class="w-full border-t border-text-950 pt-5 flex justify-center">
+    Made with <a
+      href="https://astro.build/"
+      target="_blank"
+      aria-label="my Github account"
+      ><Icon name="astro" class="text-text w-6 h-6 mt-1 mx-1" /></a
+    > by <a
+      href="https://github.com/ValentinTT/"
+      target="_blank"
+      aria-label="my Github account"
+      class="ml-1 font-medium text-accent-500">TT</a
+    >
+  </div>
 </Layout>
 
 <script

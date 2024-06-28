@@ -10,6 +10,7 @@ export interface Props {
 }
 
 const { title, imagePath, gradient } = Astro.props;
+// https://cosmicthemes.com/blog/astro-dynamic-image-imports/
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif}"
 );
