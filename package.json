@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "@astrojs/tailwind": "^5.0.2",
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/tailwind": "^5.1.0",
     "@fontsource/noto-sans": "^5.0.17",
     "@studio-freight/lenis": "^1.0.29",
-    "astro": "^3.6.1",
+    "astro": "^4.11.3",
     "astro-icon": "next",
     "gsap": "^3.12.3",
     "nanostores": "^0.9.5",
