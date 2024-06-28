@@ -13,7 +13,7 @@ const { title, imagePath, gradient } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif}"
 );
-if (!images[imagePath])
+if (imagePath && !images[imagePath])
   throw new Error(
     `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
   );
@@ -36,6 +36,7 @@ if (!images[imagePath])
           width={100}
           height={100}
           class="overflow-hidden rounded-md shadow-xl"
+          loading={"eager"}
         />
       )
     }
