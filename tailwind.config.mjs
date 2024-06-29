@@ -94,6 +94,10 @@ export default {
           "50%": { backgroundPosition: "100% 50%" },
         },
       },
+      zIndex: {
+        blur: "-1",
+        grid: "-2",
+      },
     },
   },
 

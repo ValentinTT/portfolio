@@ -1,0 +1,70 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import type { GetStaticPathsOptions, Page } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar/BlogNavbar.astro";
+import Pagination from "../../components/Pagination.astro";
+import BlogCard from "../../components/Home/Blog/BlogCard.astro";
+import BlogPostPreview from "./_components/BlogPostPreview.astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = [...(await getCollection("blog"))];
+
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+  );
+
+  return paginate(sortedPosts, { pageSize: 12 });
+}
+
+const { page } = Astro.props as {
+  page: Page<CollectionEntry<"blog">>;
+};
+
+const allPages = [...Array(page.lastPage).keys()].map((num) => {
+  return `/blog${num === 0 ? "" : `/${String(num + 1)}`}`;
+});
+---
+
+<Layout
+  title="Blog"
+  description="What I've been up to."
+  class="bg-background"
+  bgClass=""
+>
+  <Navbar slot="navbar" />
+  <div class="h-16"></div>
+  <div
+    class="min-h-screen w-full flex flex-col xl:flex-row justify-between items-center xl:items-start lg:pl-6 bg-transparent xl:bg-background-100 dark:xl:bg-background"
+  >
+    <div
+      class="xl:grow lg:py-18 py-12 sm:py-14 md:py-16 xl:py-20 xl:sticky xl:top-0 flex flex-col gap-6 text-center"
+    >
+      <h1
+        class="heading-3 mx-auto max-w-screen-lg sm:heading-2 lg:heading-1 text-4xl"
+      >
+        Log
+      </h1>
+      <p class="body text-astro-gray-200 md:body-large text-xl">
+        This is what I've been up to!
+      </p>
+    </div>
+    <div
+      class="flex flex-col items-center gap-20 p-8 lg:p-12 xl:p-20 bg-background-300 dark:bg-background-50 max-w-5xl w-full md:w-fit"
+    >
+      <ul class="flex max-w-screen-md flex-col gap-y-4 md:gap-y-6 lg:gap-y-8">
+        {
+          page.data.map((post) => (
+            <li>
+              <>
+                <BlogPostPreview post={post} />
+              </>
+            </li>
+          ))
+        }
+      </ul>
+
+      <Pagination restRoute allPages={allPages} page={page} class="mx-auto" />
+    </div>
+  </div>
+</Layout>

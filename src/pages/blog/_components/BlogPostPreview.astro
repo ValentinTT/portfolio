@@ -1,0 +1,77 @@
+---
+import { format } from "date-fns";
+import LinkButton from "../../../components/LinkButton.astro";
+import { resolveCoverImage } from "../../../content/blog/_images/_resolveImage";
+
+export type Props = {
+  post: {
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      publishDate: Date;
+      coverGradient: string;
+      coverImage?: string;
+    };
+  };
+};
+
+const { post } = Astro.props;
+
+const image = await resolveCoverImage(post);
+---
+
+<article
+  class="w-80 md:w-full h-[28rem] md:h-72 rounded-md border border-accent-700 bg-background-50 dark:bg-background-100 overflow-hidden text-text flex flex-col md:flex-row md:hover:shadow-lg transition-all"
+>
+  <header
+    class:list={[
+      "overflow-hidden w-full h-52 md:w-96 md:h-72 flex justify-center items-center",
+      post.data.coverGradient,
+    ]}
+  >
+    {
+      image && (
+        <img
+          src={image.src}
+          width={image.width}
+          height={image.height}
+          alt={post.data.title}
+          class="overflow-hidden rounded-md shadow-xl h-28 w-28"
+          loading="lazy"
+          decoding="async"
+        />
+      )
+    }
+  </header>
+  <main class="grow mx-3 bg-transparent flex flex-col justify-between">
+    <!-- <h3 class="text-2xl">{title}</h3> -->
+    <time
+      class="ml-auto mt-5 mr-5 text-text-800 text-lg"
+      datetime={post.data.publishDate.toISOString()}
+    >
+      {format(post.data.publishDate, "MMMM d, yyyy")}
+    </time>
+    <div class="mt-6 flex flex-col ml-3">
+      <h3 class="heading-4 md:heading-3 text-text text-2xl mb-2">
+        {post.data.title}
+      </h3>
+      <p class="text-text-800">{post.data.description}</p>
+    </div>
+    <footer class="flex flex-col items-center justify-center m-5 mb-2">
+      <div
+        class="h-[1px] w-[90%] mb-1 bg-accent dark:bg-emerald-600 shadow-accent dark:shadow-emerald-600"
+      >
+      </div>
+      <LinkButton
+        link={`/blog/${post.slug}/`}
+        icon="ph:arrow-up-right"
+        iconClass="w-3 h-3 text-accent dark:text-emerald-500"
+        class="bg-transparent dark:bg-transparent border-0 text-accent dark:text-emerald-500 shadow-none"
+        target="_self"
+      >
+        Read More
+      </LinkButton>
+    </footer>
+  </main>
+</article>
