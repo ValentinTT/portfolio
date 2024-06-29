@@ -14,10 +14,11 @@
     "@astrojs/mdx": "^3.1.2",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/noto-sans": "^5.0.17",
+    "@iconify-json/ph": "^1.1.13",
     "@studio-freight/lenis": "^1.0.29",
     "astro": "^4.11.3",
     "astro-expressive-code": "^0.35.3",
-    "astro-icon": "next",
+    "date-fns": "^3.6.0",
     "gsap": "^3.12.3",
     "nanostores": "^0.9.5",
     "smartypants": "^0.2.2",
@@ -26,8 +27,8 @@
     "typescript": "^5.3.2"
   },
   "devDependencies": {
-    "@iconify-json/iconoir": "^1.1.38",
     "@tailwindcss/typography": "^0.5.10",
+    "astro-icon": "^1.1.0",
     "prettier-plugin-astro": "^0.12.2",
     "tailwindcss-animated": "^1.0.1"
   }

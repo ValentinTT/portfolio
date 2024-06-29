@@ -21,12 +21,16 @@ const { title, codeLink, blogLink } = Astro.props;
   <footer class="mt-auto flex space-x-3">
     {
       blogLink !== undefined && blogLink !== "" && (
-        <LinkButton link={blogLink} icon="arrow-up-right" iconClass="w-3 h-3">
+        <LinkButton
+          link={blogLink}
+          icon="ph:arrow-up-right"
+          iconClass="w-5 h-5"
+        >
           Blog
         </LinkButton>
       )
     }
-    <LinkButton link={codeLink} icon="code" iconClass="w-5 h-5">
+    <LinkButton link={codeLink} icon="ph:code" iconClass="w-5 h-5">
       Code
     </LinkButton>
   </footer>

@@ -6,14 +6,21 @@ export interface Props {
   icon: string;
   class?: string;
   iconClass?: string;
+  target?: string;
 }
 
-const { link, icon, class: className, iconClass } = Astro.props;
+const {
+  link,
+  icon,
+  class: className,
+  iconClass,
+  target = "_blank",
+} = Astro.props;
 ---
 
 <a
   href={link}
-  target="_blank"
+  target={target}
   class:list={[
     "bg-background dark:bg-text dark:text-background py-2 px-6 rounded-xl shadow-md transition-all flex items-center space-x-2 border border-zinc-500 group",
     className,
