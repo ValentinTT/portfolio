@@ -1,105 +1,120 @@
 ---
-interface Props {
-  title: string;
-}
-
-const { title } = Astro.props;
+import { Icon } from "astro-icon/components";
 import Cursor from "../components/Cursor.astro";
 import Navbar from "../components/Navbar.astro";
 import "../styles/main.css";
 import "@fontsource/noto-sans";
+import BaseHead, {
+  type Props as HeadProps,
+} from "../components/Layout/BaseHead.astro";
+import SkipLink from "../components/Layout/SkipLink.astro";
+
+interface Props extends HeadProps {}
+const { ...head } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="">
+<html lang="en" class="dark">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Valentin TT portfolio" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <BaseHead {...head} />
   </head>
-  <body class="text-text">
+
+  <body
+    class="flex min-h-screen max-w-screen flex-col overflow-x-hidden text-text"
+  >
+    <SkipLink />
     <Navbar />
     <main class="min-h-screen container mx-auto scroll-smooth">
       <span
         class="hidden lg:inline-block fixed container top-16 h-3 rounded-none rounded-b-none border-t-[1px] border-0 border-text-800 z-50 opacity-0 transition-all"
         id="border-top"></span>
       <slot />
+      <div class="w-full border-t border-text-950 pt-5 flex justify-center">
+        Made with <a
+          href="https://astro.build/"
+          target="_blank"
+          aria-label="my Github account"
+          ><Icon name="astro" class="text-text w-6 h-6 mt-1 mx-1" /></a
+        > by <a
+          href="https://github.com/ValentinTT/"
+          target="_blank"
+          aria-label="my Github account"
+          class="ml-1 font-medium text-accent-500">TT</a
+        >
+      </div>
     </main>
     <Cursor />
+    <style is:global>
+      html {
+        font-family: system-ui, sans-serif;
+      }
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
+      /* ===== Scrollbar CSS ===== */
+      /* Firefox */
+      * {
+        scrollbar-width: auto;
+        scrollbar-color: var(--background-50) var(--background-300);
+      }
+
+      /* Chrome, Edge, and Safari */
+      *::-webkit-scrollbar-track {
+        border-radius: 6px;
+        border: 0px;
+        background-color: var(--background-50);
+      }
+
+      *::-webkit-scrollbar {
+        width: 8px;
+        border: 0px;
+        background-color: var(--background-50);
+      }
+
+      *::-webkit-scrollbar-thumb {
+        border: 0px;
+        background-color: var(--background-300);
+      }
+
+      *::selection {
+        background-color: var(--background-950);
+        color: var(--text-50);
+        mix-blend-mode: multiply;
+      }
+
+      .scrolled {
+        opacity: 1;
+      }
+    </style>
+
+    <script>
+      window.addEventListener("scroll", function () {
+        const borderTop = document.getElementById("border-top");
+        if (borderTop === null) return;
+        if (window.scrollY > 30) {
+          borderTop.classList.add("scrolled");
+        } else {
+          borderTop.classList.remove("scrolled");
+        }
+      });
+      import Lenis from "@studio-freight/lenis";
+
+      const lenis = new Lenis();
+
+      function raf(time: any) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
   </body>
 </html>
-<style is:global>
-  html {
-    font-family: system-ui, sans-serif;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-  /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    scrollbar-width: auto;
-    scrollbar-color: var(--background-50) var(--background-300);
-  }
-
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar-track {
-    border-radius: 6px;
-    border: 0px;
-    background-color: var(--background-50);
-  }
-
-  *::-webkit-scrollbar {
-    width: 8px;
-    border: 0px;
-    background-color: var(--background-50);
-  }
-
-  *::-webkit-scrollbar-thumb {
-    border: 0px;
-    background-color: var(--background-300);
-  }
-
-  *::selection {
-    background-color: var(--background-950);
-    color: var(--text-50);
-    mix-blend-mode: multiply;
-  }
-
-  .scrolled {
-    opacity: 1;
-  }
-</style>
-
-<script>
-  window.addEventListener("scroll", function () {
-    const borderTop = document.getElementById("border-top");
-    if (borderTop === null) return;
-    if (window.scrollY > 30) {
-      borderTop.classList.add("scrolled");
-    } else {
-      borderTop.classList.remove("scrolled");
-    }
-  });
-  import Lenis from "@studio-freight/lenis";
-
-  const lenis = new Lenis();
-
-  function raf(time: any) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-</script>
