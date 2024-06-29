@@ -1,3 +1,11 @@
 {
-  "conventionalCommits.scopes": ["images", "tech"]
+  "conventionalCommits.scopes": [
+    "images",
+    "tech",
+    "contact",
+    "layout",
+    "blog",
+    "navbar",
+    "home"
+  ]
 }

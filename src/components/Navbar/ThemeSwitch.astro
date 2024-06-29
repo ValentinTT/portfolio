@@ -1,0 +1,84 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="inline-flex items-center">
+  <!--input checkbox-->
+  <input
+    type="checkbox"
+    name="switcher"
+    id="theme-switch"
+    class="switcher-input"
+  />
+
+  <!--label with images and span to change color-->
+  <label
+    for="theme-switch"
+    class="w-8 h-8 border-2 border-text-800 flex justify-center items-center rounded-full"
+  >
+    <Icon
+      class="text-text-800 font-medium w-5 h-5 mx-1 dark:hidden"
+      name="ph:sun"
+      id="light-theme"
+    />
+    <Icon
+      class="text-text-800 font-medium w-5 h-5 mx-1 hidden dark:inline-block"
+      name="ph:moon"
+      id="dark-theme"
+    />
+  </label>
+</div>
+
+<style>
+  /*input checkbox*/
+  input[type="checkbox"] {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+</style>
+
+<script>
+  const inputCheckbox = document.getElementById(
+    "theme-switch"
+  ) as HTMLInputElement;
+
+  inputCheckbox.addEventListener("change", () => {
+    console.log("Log:");
+    let theme = getTheme();
+
+    if (theme == "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  });
+
+  function checkTheme() {
+    const theme = getTheme();
+    if (theme == null || theme == undefined || typeof theme != "string") {
+      setTheme("light");
+    } else {
+      if (theme == "dark") {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+    }
+  }
+
+  function setTheme(theme = "light") {
+    window.localStorage.setItem("theme", theme);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+  }
+
+  function getTheme() {
+    return window.localStorage.getItem("theme");
+  }
+
+  checkTheme();
+</script>
