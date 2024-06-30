@@ -12,7 +12,7 @@ interface Props extends HeadProps {
   class?: string;
   bgClass?: string;
 }
-const { bgClass = "bg-transparent", ...head } = Astro.props;
+const { bgClass = "bg-background", ...head } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +26,7 @@ const { bgClass = "bg-transparent", ...head } = Astro.props;
   >
     <SkipLink />
     <slot name="navbar" />
-    <main class="min-h-screen container mx-auto scroll-smooth">
+    <main class="min-h-screen w-full sm:container mx-auto scroll-smooth">
       {
         Astro.slots.has("navbar") && (
           <span
