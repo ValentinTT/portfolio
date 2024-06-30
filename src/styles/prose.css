@@ -1,0 +1,72 @@
+@layer components {
+  .prose {
+    @apply mx-auto w-full max-w-prose tracking-wide text-text lg:text-lg;
+    line-height: 1.75em;
+  }
+
+  .prose > p {
+    @apply my-4;
+  }
+
+  .prose > hr {
+    @apply my-8 border-accent-950;
+  }
+
+  .prose > h2 {
+    @apply heading-2 mb-4 mt-10 text-[32px] font-normal leading-[38px] text-text;
+  }
+
+  .prose > h3 {
+    @apply heading-3 mb-4 mt-10 text-2xl font-normal leading-tight text-text;
+  }
+
+  .prose > img {
+    @apply my-4;
+  }
+
+  .prose strong {
+    @apply font-medium text-text-500;
+  }
+
+  .prose ul {
+    @apply my-4 pl-8;
+  }
+
+  /* the ::marker selector doesn't allow customizing the spacing around the marker as easily */
+  .prose ul li::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    margin-left: -18px;
+  }
+
+  .prose ol {
+    @apply my-4 list-inside list-decimal pl-4;
+  }
+  .prose ol ::marker {
+    @apply font-mono inline-block font-bold text-accent-950;
+  }
+
+  .prose li {
+    @apply my-0.5;
+  }
+
+  .prose :where(a) {
+    @apply text-accent-950 underline underline-offset-2 hover:no-underline;
+  }
+
+  .prose > p code {
+    @apply mx-0.5 inline-block rounded-lg bg-text-500 px-2 align-baseline text-sm leading-6 text-text;
+  }
+
+  .prose > p a > code {
+    @apply text-inherit;
+    text-decoration: inherit;
+  }
+
+  .prose > .expressive-code pre {
+    @apply my-6 rounded-md border border-emerald-700;
+  }
+}
