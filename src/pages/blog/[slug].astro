@@ -1,0 +1,112 @@
+---
+import { type CollectionEntry, getCollection, getEntry } from "astro:content";
+import { format } from "date-fns";
+import Layout from "../../layouts/Layout.astro";
+import { randomFromArray } from "../../helpers/random";
+import {
+  resolveCoverImage,
+  resolveSocialImage,
+} from "../../content/blog/_images/_resolveImage";
+import BlogNavbar from "../../components/Navbar/BlogNavbar.astro";
+
+export type Props = {
+  post: CollectionEntry<"blog">;
+};
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog");
+
+  return blog.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const { data, render } = post;
+const { Content } = await render();
+
+const coverImage = await resolveCoverImage(post);
+const socialImage = await resolveSocialImage(post);
+const gradients = [
+  "bg-red-pink-gradient",
+  "bg-blue-green-gradient",
+  "bg-blue-purple-gradient",
+  "bg-orange-yellow-gradient",
+];
+
+const placeholderGradient = randomFromArray(gradients);
+---
+
+<Layout
+  title={data.title}
+  description={data.description}
+  bgClass="bg-background-50"
+  image={socialImage && { src: socialImage.src, alt: data.title }}
+>
+  <BlogNavbar slot="navbar" />
+  <div class="h-16"></div>
+  {
+    coverImage ? (
+      <div class="mx-auto w-full max-w-screen-lg max-h-96 overflow-hidden md:-mb-10 lg:-mb-12 xl:-mb-16">
+        <img
+          src={coverImage.src}
+          width={coverImage.width}
+          height={coverImage.height}
+          loading="lazy"
+          decoding="async"
+          alt=""
+          class="min-h-[240px] w-full object-cover"
+        />
+      </div>
+    ) : (
+      <div
+        class:list={[
+          "z-blur -mb-56 h-64 w-full md:-mb-52 md:h-64 lg:-mb-80 lg:h-96",
+          placeholderGradient,
+        ]}
+      />
+    )
+  }
+
+  <div
+    class="w-full md:grid-container relative mx-auto max-w-screen-lg md:z-10 !pb-0"
+  >
+    <div
+      class="mx-auto w-fit max-w-full bg-background py-8 px-5 md:px-10 md:py-12 lg:p-12 lg:py-16 xl:p-16 xl:py-20"
+    >
+      <header class="mx-auto w-full max-w-prose text-center">
+        <time
+          class="code text-text-800"
+          datetime={data.publishDate.toISOString()}
+        >
+          {format(data.publishDate, "MMMM d, yyyy")}
+        </time>
+        <h1 class="text-xl mb-4 mt-2 md:text-3xl lg:text-5xl sm:mb-5 sm:mt-3">
+          {data.title}
+        </h1>
+      </header>
+      <hr class="-mx-16 my-8 border border-accent-50 lg:my-16" />
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Remove autoplay from videos when `prefers-reduced-motion: reduce`
+  const autoplayVideos = document.querySelectorAll("video[autoplay]");
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion) {
+    autoplayVideos.forEach((video) => {
+      video.removeAttribute("autoplay");
+      // Add controls attribute so user can still play the video if they want
+      video.setAttribute("controls", "true");
+    });
+  }
+</script>

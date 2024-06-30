@@ -14,7 +14,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
   );
 
-  return paginate(sortedPosts, { pageSize: 12 });
+  return paginate(sortedPosts, { pageSize: 2 });
 }
 
 const { page } = Astro.props as {
@@ -35,7 +35,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
   <Navbar slot="navbar" />
   <div class="h-16"></div>
   <div
-    class="min-h-screen w-full flex flex-col xl:flex-row justify-between items-center xl:items-start lg:pl-6 bg-transparent xl:bg-background-100 dark:xl:bg-background"
+    class="min-h-screen w-full flex flex-col xl:flex-row justify-between items-center xl:items-start bg-transparent xl:bg-background-100 dark:xl:bg-background"
   >
     <div
       class="xl:grow lg:py-18 py-12 sm:py-14 md:py-16 xl:py-20 xl:sticky xl:top-0 flex flex-col gap-6 text-center"
@@ -50,7 +50,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
       </p>
     </div>
     <div
-      class="flex flex-col items-center gap-20 p-8 lg:p-12 xl:p-20 bg-background-300 dark:bg-background-50 max-w-5xl w-full md:w-fit"
+      class="flex flex-col items-center justify-between gap-20 p-8 lg:p-12 xl:p-20 bg-background-300 dark:bg-background-50 max-w-5xl w-full md:w-fit md:min-h-screen"
     >
       <ul class="flex max-w-screen-md flex-col gap-y-4 md:gap-y-6 lg:gap-y-8">
         {

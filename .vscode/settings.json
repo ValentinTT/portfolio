@@ -6,6 +6,7 @@
     "layout",
     "blog",
     "navbar",
-    "home"
+    "home",
+    "tailwind"
   ]
 }
