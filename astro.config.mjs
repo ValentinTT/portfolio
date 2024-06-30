@@ -3,8 +3,10 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 
-import expressiveCode from "astro-expressive-code";
-import houston from "./houston.theme.json";
+import astroExpressiveCode from "astro-expressive-code";
+import macchiato from "./catppuccin-macchiato.theme.json";
+
+import { rehypePrettyCode } from "rehype-pretty-code";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,10 +27,9 @@ export default defineConfig({
         ],
       },
     }),
-    expressiveCode({
-      themes: [houston],
-      frames: false,
+    astroExpressiveCode({
+      themes: [macchiato],
     }),
-    mdx(),
+    mdx({}),
   ],
 });
