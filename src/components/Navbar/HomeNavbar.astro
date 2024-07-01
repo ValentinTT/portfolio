@@ -1,23 +1,24 @@
 ---
+import CollapsibleMenu from "./CollapsibleMenu.astro";
 import ThemeSwitch from "./ThemeSwitch.astro";
 ---
 
 <nav
   class="fixed w-full top-0 left-0 px-0 sm:px-4 md:px-8 h-16 z-50 transition-all"
 >
-  <div class="relative container mx-auto h-full">
+  <div class="container mx-auto h-full">
     <div class="h-full flex items-center">
       <div
         class="mr-5 h-full flex items-center shadow-background-900 transition-all hover:animate-jump"
       >
         <a
           href="/"
-          class="text-xl font-bold text-text-800 rounded-md border-2 p-2 border-text-800 ml-2 md:ml-1 tracking-tighter"
+          class="text-xl font-bold text-text-800 rounded-md border-2 p-2 border-text-800 ml-2 md:ml-1 tracking-tighter s-12 text-center"
           >TT</a
         >
       </div>
       <div
-        class="col-span-1 row-span-1 h-full flex items-center font-normal dark:font-semibold space-x-4 text-text-800 transition-colors duration-200"
+        class="col-span-1 row-span-1 h-full hidden md:flex items-center font-normal dark:font-semibold space-x-4 text-text-800 transition-colors duration-200"
       >
         <a href="#whoami" class="hover:text-text-950">Whoami</a>
         <a href="#tech" class="hover:text-text-950">Technologies</a>
@@ -26,9 +27,18 @@ import ThemeSwitch from "./ThemeSwitch.astro";
         <a href="#contact" class="hover:text-text-950">Contact</a>
       </div>
       <div
-        class="ml-auto mr-1 h-full flex items-center shadow-background-900 transition-all"
+        class="ml-auto mr-1 h-full hidden md:flex items-center shadow-background-900 transition-all"
       >
         <ThemeSwitch />
+      </div>
+      <div class="md:hidden ml-auto">
+        <CollapsibleMenu>
+          <a href="#whoami" class="hover:text-text-950">Whoami</a>
+          <a href="#tech" class="hover:text-text-950">Technologies</a>
+          <a href="#projects" class="hover:text-text-950">Projects</a>
+          <a href="#blog" class="hover:text-text-950">Blog</a>
+          <a href="#contact" class="hover:text-text-950">Contact</a>
+        </CollapsibleMenu>
       </div>
     </div>
   </div>

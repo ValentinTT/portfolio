@@ -1,0 +1,99 @@
+---
+import ThemeSwitch from "./ThemeSwitch.astro";
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div class="flex ml-5">
+  <ThemeSwitch />
+  <div class="ml-4">
+    <!--input checkbox-->
+    <input type="checkbox" name="menu-switch" id="menu-switch" class="hidden" />
+    <label
+      for="menu-switch"
+      class="flex items-center justify-center rounded-md s-12 border-2 border-text-800 duration-200"
+    >
+      <div
+        class="flex flex-col justify-between s-4 transform transition-all duration-300 origin-center"
+        id="menu-switch-container"
+      >
+        <div
+          class="bg-text-800 h-[2px] w-1/2 rounded transform transition-all duration-300 origin-right delay-75"
+          id="top-bar"
+        >
+        </div>
+        <div class="bg-text-800 h-[1px] rounded"></div>
+        <div
+          class="bg-text-800 h-[2px] w-1/2 rounded self-end transform transition-all duration-300 origin-left delay-75"
+          id="bottom-bar"
+        >
+        </div>
+      </div>
+    </label>
+  </div>
+  <div
+    id="menu"
+    class="container bg-background-50 flex flex-col fixed top-16 left-0 overflow-hidden h-0 m-0 pl-6 space-y-3 transition-all"
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  .showMenu {
+    height: fit-content;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .menu-switch-container {
+    --tw-rotate: -45deg;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+  .menu-switch-bar {
+    --tw-rotate: -90deg;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+  .menu-switch-top-bar {
+    --tw-translate-y: -1px;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+  .menu-switch-bottom-bar {
+    --tw-translate-y: 1px;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+</style>
+<script>
+  let isMenuOpen = false;
+
+  const menuSwitch = document.getElementById("menu-switch") as HTMLInputElement;
+  const topBar = document.getElementById("top-bar");
+  const bottomBar = document.getElementById("bottom-bar");
+  const menuSwitchContainer = document.getElementById("menu-switch-container");
+  const menuDrawer = document.getElementById("menu");
+
+  menuSwitch?.addEventListener("change", () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      menuDrawer?.classList.add("showMenu");
+      menuSwitchContainer?.classList.add("menu-switch-container");
+      topBar?.classList.add("menu-switch-bar", "menu-switch-top-bar");
+      bottomBar?.classList.add("menu-switch-bar", "menu-switch-bottom-bar");
+    } else {
+      menuDrawer?.classList.remove("showMenu");
+      menuSwitchContainer?.classList.remove("menu-switch-container");
+      topBar?.classList.remove("menu-switch-bar", "menu-switch-top-bar");
+      bottomBar?.classList.remove("menu-switch-bar", "menu-switch-bottom-bar");
+    }
+  });
+</script>

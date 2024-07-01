@@ -67,6 +67,6 @@
   }
 
   .prose > .expressive-code pre {
-    @apply my-6 rounded-md border border-emerald-700;
+    @apply my-6 rounded-md border border-primary dark:border-emerald-700;
   }
 }
