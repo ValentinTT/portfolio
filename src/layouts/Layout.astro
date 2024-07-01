@@ -36,13 +36,19 @@ const { bgClass = "bg-background", ...head } = Astro.props;
         )
       }
       <slot />
-      <div class="w-full border-t border-text-800 pt-5 flex justify-center">
-        Made with <a
+      <div class="w-full border-t border-text-800 py-5 flex justify-center">
+        Built with <a
           href="https://astro.build/"
           target="_blank"
           aria-label="my Github account"
-          ><Icon name="astro" class="text-text w-6 h-6 mt-1 mx-1" /></a
-        > by <a
+          ><Icon
+            name="astro"
+            class="text-text w-6 h-6 mt-1 mx-1 hidden dark:block"
+          /><Icon
+            name="astro-light"
+            class="text-text w-6 h-6 mt-1 mx-1 dark:hidden"
+          />
+        </a> by <a
           href="https://github.com/ValentinTT/"
           target="_blank"
           aria-label="my Github account"
