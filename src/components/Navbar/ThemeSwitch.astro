@@ -80,5 +80,5 @@ import { Icon } from "astro-icon/components";
   }
 
   window.addEventListener("DOMContentLoaded", () => checkTheme());
-  document.addEventListener("astro:page-load", () => checkTheme());
+  document.addEventListener("astro:after-swap ", () => checkTheme());
 </script>

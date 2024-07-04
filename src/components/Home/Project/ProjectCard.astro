@@ -27,7 +27,12 @@ const { title, codeLink, blogLink, otherLink } = Astro.props;
     <div class="flex space-x-3">
       {
         blogLink !== undefined && blogLink !== "" && (
-          <LinkButton link={blogLink} icon="ph:arrow-up-right" iconClass="s-4">
+          <LinkButton
+            target="_self"
+            link={blogLink}
+            icon="ph:arrow-up-right"
+            iconClass="s-4"
+          >
             Blog
           </LinkButton>
         )
