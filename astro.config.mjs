@@ -25,7 +25,7 @@ export default defineConfig({
           "sun",
           "moon",
           "github-logo",
-          "linkedin-logo",
+          "linkedin-logo-fill",
           "x-logo",
           "envelope-simple",
         ],

@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="inline-flex items-center">
+<div class="inline-flex items-center" transition:persist>
   <!--input checkbox-->
   <input
     type="checkbox"
@@ -14,7 +14,7 @@ import { Icon } from "astro-icon/components";
   <!--label with images and span to change color-->
   <label
     for="theme-switch"
-    class="w-8 h-8 border-2 border-text-800 flex justify-center items-center rounded-full"
+    class="w-8 h-8 border-2 border-text-800 flex justify-center items-center rounded-full cursor-pointer"
   >
     <Icon
       class="text-text-800 font-medium w-5 h-5 mx-1 dark:hidden"
@@ -72,12 +72,13 @@ import { Icon } from "astro-icon/components";
   function setTheme(theme = "light") {
     window.localStorage.setItem("theme", theme);
     document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(theme);
+    if (theme === "dark") document.documentElement.classList.add(theme);
   }
 
   function getTheme() {
     return window.localStorage.getItem("theme");
   }
 
-  checkTheme();
+  window.addEventListener("DOMContentLoaded", () => checkTheme());
+  document.addEventListener("astro:page-load", () => checkTheme());
 </script>

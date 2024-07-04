@@ -21,8 +21,8 @@ import About from "../components/Home/About.astro";
 
 <script
   src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"
-  is:inline></script>
-<script>
+  is:inline
+>
   // @ts-ignore
   new Rellax(".rellax");
 </script>
@@ -87,4 +87,7 @@ import About from "../components/Home/About.astro";
   });
   const config = { attributes: true, attributeFilter: ["class"] };
   observer.observe(htmlElement, config);
+  document.addEventListener("astro:before-preparation", () => {
+    backgroundColorAnimations.map((animation) => animation.kill());
+  });
 </script>
