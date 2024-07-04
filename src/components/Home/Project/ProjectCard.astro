@@ -3,35 +3,53 @@ import LinkButton from "../../LinkButton.astro";
 
 export interface Props {
   title: string;
-  codeLink: string;
+  codeLink?: string;
   blogLink?: string;
+  otherLink?: {
+    link: string;
+    text: string;
+  };
 }
 
-const { title, codeLink, blogLink } = Astro.props;
+const { title, codeLink, blogLink, otherLink } = Astro.props;
 ---
 
-<article class="flex flex-col w-full h-full p-10">
+<article class="flex flex-col w-full min-h-full p-10">
   <header class="flex space-x-5 items-center">
     <slot name="logo" />
     <h3 class="py-5 text-3xl tracking-tighter font-normal">{title}</h3>
   </header>
-  <main class="py-4 space-y-5">
+  <main class="py-4 grow">
     <slot />
   </main>
-  <footer class="mt-auto flex space-x-3">
-    {
-      blogLink !== undefined && blogLink !== "" && (
-        <LinkButton
-          link={blogLink}
-          icon="ph:arrow-up-right"
-          iconClass="w-5 h-5"
-        >
-          Blog
-        </LinkButton>
-      )
-    }
-    <LinkButton link={codeLink} icon="ph:code" iconClass="w-5 h-5">
-      Code
-    </LinkButton>
+  <footer class="mt-auto flex flex-col space-y-5">
+    <slot name="tags" />
+    <div class="flex space-x-3">
+      {
+        blogLink !== undefined && blogLink !== "" && (
+          <LinkButton link={blogLink} icon="ph:arrow-up-right" iconClass="s-4">
+            Blog
+          </LinkButton>
+        )
+      }
+      {
+        codeLink !== undefined && codeLink !== "" && (
+          <LinkButton link={codeLink} icon="ph:code" iconClass="s-5">
+            Code
+          </LinkButton>
+        )
+      }
+      {
+        otherLink !== undefined && (
+          <LinkButton
+            link={otherLink.link}
+            icon="ph:arrow-up-right"
+            iconClass="s-4"
+          >
+            {otherLink.text}
+          </LinkButton>
+        )
+      }
+    </div>
   </footer>
 </article>

@@ -5,11 +5,15 @@ import SectionHeader from "../SectionHeader.astro";
 import ProjectCard from "./Project/ProjectCard.astro";
 import ImageLogo from "./Project/ImageLogo.astro";
 import ProjectStack from "./Project/ProjectStack.astro";
+import projectsInfo from "../../data/projects-info";
+
+const fromColor = "1fa0e0";
+const viaColor = "4519b3";
 ---
 
 <!-- background 50, background 50-->
 <section
-  class="min-h-screen w-full max-w-full flex flex-col items-center bg-transparent text-secondary-50 space-y-5 overflow-hidden pt-16"
+  class="w-full max-w-full flex flex-col items-center bg-transparent text-secondary-50 space-y-5 overflow-hidden pt-16"
   id="projects"
   data-color="#a3d6f5"
   data-color-dark="#010609"
@@ -19,31 +23,30 @@ import ProjectStack from "./Project/ProjectStack.astro";
     class="w-full flex flex-wrap justify-center items-center p-2 gap-2 sm:gap-4"
   >
     {
-      [1, 2, 3, 4, 5, 6].map((i) => {
+      projectsInfo.map((project) => {
         return (
           <SpotlightCard
-            from="#1fa0e0"
-            via="#4519b3"
-            class="bg-background dark:bg-zinc-950 text-text sm:h-96 w-[30rem]"
+            from={fromColor}
+            via={viaColor}
+            class="bg-background dark:bg-zinc-950 text-text sm:h-[24rem] w-[30rem]"
           >
             <ProjectCard
-              title="Bee Watcher"
-              codeLink="https://github.com/ValentinTT"
-              blogLink="http://localhost:4321"
+              title={project.title}
+              codeLink={project.codeLink}
+              blogLink={project.blogLink}
+              otherLink={project.otherLink}
             >
               <ImageLogo
-                src="/src/assets/projects/bee-watcher-logo.png"
-                alt="Bee watcher logo"
-                slot="logo"
+                src={project.image.src}
+                alt={project.image.alt}
+                slot={project.image.slot}
               />
 
               <p class="text-zinc-700 dark:text-zinc-400">
-                Radio frequency networked Arduinos gather internal hives' data
-                (temperature, humidity, position and motion). They are then sent
-                to a central unit for micro SD logging and emergency SMS alerts.
+                {project.description}
               </p>
-              <div class="flex">
-                {["Arduino", "C", "Next.js"].map((stack) => {
+              <div class="flex" slot="tags">
+                {project.tags.map((stack) => {
                   return <ProjectStack stackName={stack} />;
                 })}
               </div>

@@ -12,6 +12,10 @@
     @apply my-8 border-accent-950;
   }
 
+  .prose > h1 {
+    @apply heading-1 mb-4 mt-10 text-[40px] font-normal leading-[38px] text-text;
+  }
+
   .prose > h2 {
     @apply heading-2 mb-4 mt-10 text-[32px] font-normal leading-[38px] text-text;
   }
