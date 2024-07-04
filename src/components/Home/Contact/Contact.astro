@@ -13,6 +13,9 @@ const { default: MeBust } = await import("/src/assets/me-bust.svg?raw");
   <SectionHeader class="mb-14">CONTACT ME.</SectionHeader>
   <div class="flex justify-evenly flex-col md:flex-row">
     <div class="w-full max-w-2xl flex flex-col justify-center items-center">
+      <h2 class="mb-4 text-2xl font-normal text-text dark:text-white">
+        I would love to hear from you!
+      </h2>
       <div class="max-w-[18rem] w-full">
         <Fragment set:html={MeBust} />
       </div>
@@ -20,7 +23,7 @@ const { default: MeBust } = await import("/src/assets/me-bust.svg?raw");
         <SocialButtons />
       </div>
     </div>
-    <div class="h-fit w-full max-w-2xl p-5 md:p-12" id="form">
+    <!-- <div class="h-fit w-full max-w-2xl p-5 md:p-12" id="form">
       <h2 class="mb-4 text-2xl font-normal text-text dark:text-white">
         Get in touch?
       </h2>
@@ -69,6 +72,6 @@ const { default: MeBust } = await import("/src/assets/me-bust.svg?raw");
           >
         </div>
       </form>
-    </div>
+    </div> -->
   </div>
 </section>
