@@ -29,10 +29,12 @@ const { bgClass = "bg-background", ...head } = Astro.props;
     <main class="min-h-screen w-full sm:container mx-auto scroll-smooth">
       {
         Astro.slots.has("navbar") && (
-          <span
-            class="hidden lg:inline-block fixed container top-16 h-3 rounded-none rounded-b-none border-t-[1px] border-0 border-text-800 z-50 opacity-0 transition-all"
-            id="border-top"
-          />
+          <div class="fixed w-full top-16 left-0 h-[1px] z-50 transition-all p-0">
+            <div
+              class="hidden lg:block container mx-auto h-full bg-text-800 opacity-0 transition-all"
+              id="border-top"
+            />
+          </div>
         )
       }
       <slot />

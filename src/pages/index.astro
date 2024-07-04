@@ -1,18 +1,20 @@
 ---
-import About from "../components/Home/About.astro";
+import Hero from "../components/Home/Header.astro";
 import Blog from "../components/Home/Blogs.astro";
 import Contact from "../components/Home/Contact/Contact.astro";
 import Projects from "../components/Home/Projects.astro";
 import Technologies from "../components/Home/Technologies.astro";
 import Navbar from "../components/Navbar/HomeNavbar.astro";
 import Layout from "../layouts/Layout.astro";
+import About from "../components/Home/About.astro";
 ---
 
 <Layout title="Homepage" description="Valentin TT portfolio">
   <Navbar slot="navbar" />
+  <Hero />
   <About />
-  <Technologies />
   <Projects />
+  <Technologies />
   <Blog />
   <Contact />
 </Layout>

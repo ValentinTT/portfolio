@@ -1,48 +1,42 @@
 ---
-import Hero from "./Hero.astro";
+import SectionHeader from "../SectionHeader.astro";
 ---
 
-<!-- background 100, background 100-->
+<!-- background , background -->
 <section
-  class="min-h-screen w-full flex flex-col-reverse lg:flex-row justify-between items-center lg:pl-6 lg:bg-background-50 bg-transparent lg:mb-5"
-  id="whoami"
-  data-color="#d1eafa"
-  data-color-dark="#051e2e"
+  class="bg-transparent overflow-hidden pt-16"
+  id="about"
+  data-color="#e8f5fc"
+  data-color-dark="#030f17"
 >
-  <header class="w-full lg:w-4/6 lg:pt-16 flex flex-col">
-    <h1 class="text-8xl font-medium hidden lg:inline tracking-tight">
-      VALENTIN TT.
-    </h1>
-    <h2
-      class="max-w-max text-5xl bg-gradient-to-r from-primary-600 to-accent-950 dark:from-primary-400 dark:to-primary-700 bg-clip-text text-transparent font-medium my-5 hidden lg:inline tracking-tight"
-    >
-      Software Developer.
-    </h2>
+  <SectionHeader class="mb-14">About me.</SectionHeader>
+  <div class="ml-4 mt-4 space-y-4">
     <p
       class="max-w-4xl lg:pr-10 xl:pr-52 lg:pt-6 px-5 lg:px-0 p-3 lg:py-0 mx-3 sm:mr-16 mt-5 lg:mx-0 border border-text-500 lg:border-0 rounded-lg shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.10)] lg:shadow-none z-10 bg-background-50 lg:bg-transparent"
     >
-      Hey there! 👋 I'm Valentin TT, a
-      <span
-        class="font-semibold text-emerald-600 dark:first-letter:text-emerald-400 italic"
-        >Full-stack</span
-      > Web Developer who loves working with
-      <span class="font-semibold text-pink-500 italic">React</span>. I'm all
-      about learning through teamwork and collaboration! I strongly believe that
-      when we work together, creativity thrives. Communication is key to keep
-      learning and growing.
+      Hey there! 👋 I'm Valentin TT, a Full-stack Web Developer and Systems
+      Engineer with extensive experience crafting <span
+        class="font-semibold text-accent-700 italic"
+        >robust web applications</span
+      >. I thrive on the challenges of modern development and the collaborative
+      spirit that drives innovation. Communication is key to my approach,
+      fostering an environment where learning and growth flourish.
     </p>
     <p
       class="max-w-4xl lg:pr-10 xl:pr-52 lg:pt-6 px-5 lg:px-0 py-3 lg:py-0 mx-3 sm:ml-16 my-5 lg:mx-0 border border-text-500 lg:border-0 rounded-lg shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.10)] lg:shadow-none z-10 bg-background-50 lg:bg-transparent"
     >
-      Beyond web development, I'm into cybersecurity, reverse engineering,
-      electronics, and contributing to <span
-        class="font-semibold text-accent-700 italic">open-source</span
-      > projects. Exploring these, not only adds to my skills but also keeps my
-      excitement alive for solving problems and coming up with new ideas.
+      Beyond my passion for web development, I'm deeply engaged in
+      cybersecurity, reverse engineering, and electronics, actively contributing
+      to <span class="font-semibold text-accent-700 italic">open-source</span>
+       projects. These pursuits not only expand my skill set but also fuel my
+      enthusiasm for tackling complex challenges and pioneering new ideas. With
+      a wealth of experience in the field, I bring a seasoned perspective to
+      every project, committed to delivering excellence and continuous
+      improvement.
     </p>
-  </header>
-  <Hero />
+  </div>
 </section>
+
 <style>
   p {
     font-size: clamp(0.5rem, 0.7rem + 0.4vw, 1.375rem);
