@@ -74,26 +74,37 @@ const { class: className } = Astro.props;
   }
 </style>
 <script>
-  let isMenuOpen = false;
+  const checkCollapse = () => {
+    let isMenuOpen = false;
 
-  const menuSwitch = document.getElementById("menu-switch") as HTMLInputElement;
-  const topBar = document.getElementById("top-bar");
-  const bottomBar = document.getElementById("bottom-bar");
-  const menuSwitchContainer = document.getElementById("menu-switch-container");
-  const menuDrawer = document.getElementById("menu");
+    const menuSwitch = document.getElementById(
+      "menu-switch"
+    ) as HTMLInputElement;
+    const topBar = document.getElementById("top-bar");
+    const bottomBar = document.getElementById("bottom-bar");
+    const menuSwitchContainer = document.getElementById(
+      "menu-switch-container"
+    );
+    const menuDrawer = document.getElementById("menu");
 
-  menuSwitch?.addEventListener("change", () => {
-    isMenuOpen = !isMenuOpen;
-    if (isMenuOpen) {
-      menuDrawer?.classList.add("showMenu");
-      menuSwitchContainer?.classList.add("menu-switch-container");
-      topBar?.classList.add("menu-switch-bar", "menu-switch-top-bar");
-      bottomBar?.classList.add("menu-switch-bar", "menu-switch-bottom-bar");
-    } else {
-      menuDrawer?.classList.remove("showMenu");
-      menuSwitchContainer?.classList.remove("menu-switch-container");
-      topBar?.classList.remove("menu-switch-bar", "menu-switch-top-bar");
-      bottomBar?.classList.remove("menu-switch-bar", "menu-switch-bottom-bar");
-    }
-  });
+    menuSwitch?.addEventListener("change", () => {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        menuDrawer?.classList.add("showMenu");
+        menuSwitchContainer?.classList.add("menu-switch-container");
+        topBar?.classList.add("menu-switch-bar", "menu-switch-top-bar");
+        bottomBar?.classList.add("menu-switch-bar", "menu-switch-bottom-bar");
+      } else {
+        menuDrawer?.classList.remove("showMenu");
+        menuSwitchContainer?.classList.remove("menu-switch-container");
+        topBar?.classList.remove("menu-switch-bar", "menu-switch-top-bar");
+        bottomBar?.classList.remove(
+          "menu-switch-bar",
+          "menu-switch-bottom-bar"
+        );
+      }
+    });
+  };
+  window.addEventListener("DOMContentLoaded", () => checkCollapse());
+  document.addEventListener("astro:page-load", () => checkCollapse());
 </script>

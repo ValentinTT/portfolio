@@ -4,7 +4,7 @@ import smartypants from "smartypants";
 import Favicon from "./Favicon.astro";
 import siteInfo from "../../data/site-info";
 import SEO from "./SEO.astro";
-import { ViewTransitions } from "astro:transitions";
+// import { ViewTransitions } from "astro:transitions";
 
 export type Props = {
   title?: string;
@@ -39,7 +39,7 @@ const resolvedImage = {
 <title set:html={smartypants(title, 1)} />
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content="#1fa0e0" />
-<ViewTransitions />
+<!-- <ViewTransitions /> -->
 <!-- Low Priority Global Metadata -->
 <Favicon />
 <link rel="mask-icon" href="/favicon.svg" color="#1fa0e0" />

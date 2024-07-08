@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="inline-flex items-center" transition:persist>
+<div class="inline-flex items-center">
   <!--input checkbox-->
   <input
     type="checkbox"
@@ -80,5 +80,5 @@ import { Icon } from "astro-icon/components";
   }
 
   window.addEventListener("DOMContentLoaded", () => checkTheme());
-  document.addEventListener("astro:after-swap ", () => checkTheme());
+  // document.addEventListener("astro:after-swap", () => checkTheme());
 </script>

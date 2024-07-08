@@ -87,7 +87,7 @@ import About from "../components/Home/About.astro";
   });
   const config = { attributes: true, attributeFilter: ["class"] };
   observer.observe(htmlElement, config);
-  document.addEventListener("astro:before-preparation", () => {
-    backgroundColorAnimations.map((animation) => animation.kill());
-  });
+  // document.addEventListener("astro:before-preparation", () => {
+  //   backgroundColorAnimations.map((animation) => animation.kill());
+  // });
 </script>
