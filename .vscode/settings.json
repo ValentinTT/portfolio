@@ -10,6 +10,7 @@
     "tailwind",
     "favicon",
     "projects",
-    "view transitions"
+    "view transitions",
+    "blog-entry"
   ]
 }
