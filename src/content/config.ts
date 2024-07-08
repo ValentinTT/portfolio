@@ -11,6 +11,7 @@ export const collections = {
         .or(z.date())
         .transform((val) => new Date(val)),
       socialImage: z.string().optional(),
+      cardImage: z.string().optional(),
       coverImage: z.string().optional(),
       coverGradient: z.string(),
       lang: z.enum(["en"]).default("en"),

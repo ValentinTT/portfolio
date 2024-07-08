@@ -14,6 +14,24 @@ export async function resolveBlogImage(url: string | undefined) {
   return image;
 }
 
+export async function resolveCardImage(entry: {
+  data: { title: string; cardImage?: string | undefined };
+}) {
+  if (!entry.data.cardImage) {
+    return undefined;
+  }
+
+  if (!(entry.data.cardImage in allImages)) {
+    throw new Error(
+      `[blog] Card image for "${entry.data.title}" not found! Provided: "${entry.data.cardImage}", is there a typo?`
+    );
+  }
+
+  const { default: image } = await allImages[entry.data.cardImage]();
+
+  return image;
+}
+
 export async function resolveCoverImage(entry: {
   data: { title: string; coverImage?: string | undefined };
 }) {

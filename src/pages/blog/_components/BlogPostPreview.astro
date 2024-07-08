@@ -1,7 +1,7 @@
 ---
 import { format } from "date-fns";
 import LinkButton from "../../../components/LinkButton.astro";
-import { resolveCoverImage } from "../../../content/blog/_images/_resolveImage";
+import { resolveCardImage } from "../../../content/blog/_images/_resolveImage";
 
 export type Props = {
   post: {
@@ -18,15 +18,15 @@ export type Props = {
 
 const { post } = Astro.props;
 
-const image = await resolveCoverImage(post);
+const image = await resolveCardImage(post);
 ---
 
 <article
-  class="w-80 md:w-full h-[28rem] md:h-72 rounded-md border border-accent-700 bg-background-50 dark:bg-background-100 overflow-hidden text-text flex flex-col md:flex-row md:hover:shadow-lg transition-all"
+  class="w-80 md:w-full md:h-72 rounded-md border border-accent-700 bg-background-50 dark:bg-background-100 overflow-hidden text-text flex flex-col md:flex-row md:hover:shadow-lg transition-all"
 >
   <header
     class:list={[
-      "overflow-hidden w-full h-52 md:w-96 md:h-72 flex justify-center items-center",
+      "overflow-hidden w-full h-52 md:w-1/3 md:h-72 flex justify-center items-center",
       post.data.coverGradient,
     ]}
   >
@@ -37,14 +37,14 @@ const image = await resolveCoverImage(post);
           width={image.width}
           height={image.height}
           alt={post.data.title}
-          class="overflow-hidden rounded-md shadow-xl h-28 w-28"
+          class="overflow-hidden rounded-md h-28 w-28"
           loading="lazy"
           decoding="async"
         />
       )
     }
   </header>
-  <main class="grow mx-3 bg-transparent flex flex-col justify-between">
+  <main class="md:w-2/3 mx-3 bg-transparent flex flex-col justify-between">
     <!-- <h3 class="text-2xl">{title}</h3> -->
     <time
       class="ml-auto mt-5 mr-5 text-text-800 text-lg"
