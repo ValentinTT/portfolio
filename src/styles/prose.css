@@ -12,6 +12,15 @@
     @apply my-8 border-accent-950;
   }
 
+  .prose > h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    /* navbar height */
+    scroll-margin-top: 4rem;
+  }
+
   .prose > h1 {
     @apply heading-1 mb-4 mt-10 text-[40px] font-normal leading-[38px] text-text;
   }

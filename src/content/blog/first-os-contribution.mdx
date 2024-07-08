@@ -1,0 +1,79 @@
+---
+title: "My First Open Source Contribution: Catppuccin"
+description: I share my experience with my first open source project. I’ll talk about how I got involved with Catppuccin, the theme design for IDA Debugger, and the lessons I learned along the way.
+publishDate: "April 20, 2023"
+coverImage: "/src/content/blog/_images/first-os-contribution/cover-image.webp"
+coverGradient: "bg-[conic-gradient(var(--tw-gradient-stops))] from-green-300 via-blue-500 to-purple-600"
+cardImage: "/src/content/blog/_images/first-os-contribution/catppuccin-ida.webp"
+socialImage: "/src/content/blog/_images/first-os-contribution/catppuccin-ida.webp"
+lang: "en"
+---
+
+import BlogContentImage from "/src/components/BlogContentImage.astro";
+import portCreationDiagram from "/src/content/blog/_images/first-os-contribution/port-creation-diagram.webp";
+
+Hey everyone! 🎉 Today I'll share my experience with my first open source contribution. In this blog, I’ll talk about how I got involved with Catppuccin, a color theme for various applications, and the lessons I learned along the way.
+
+Jump to a specific topic:
+
+- [**What is Catppuccin?**](#what-is-catppuccin)
+- [**What is IDA?**](#what-is-ida)
+- [**Joining the Community**](#joining-the-community)
+- [**The Process**](#the-process)
+  - [**Posting the contribution**](#posting-the-contribution)
+- [**Conclusion**](#conclusion)
+
+## What is Catppuccin?
+
+[Catppuccin](https://catppuccin.com/) is a community-driven color theme designed to strike a balance between low and high-contrast themes. It offers four pastel color palettes known as "flavors": **Latte, Frappé, Macchiato**, and **Mocha**. Each palette contains 26 colors that aim to be balanced, harmonious, and suitable for a variety of environments, such as design and coding.
+
+I've been using Catppuccin in many tools like VSCode and Alacritty. The other day, while doing some reversing for fun on IDA, I realized it would be cool to have a Catppuccin theme for it too. So I headed to the GitHub repo but couldn't find a port for IDA, so I decided to create one myself.
+
+## What is IDA?
+
+The Interactive Disassembler ([IDA](https://hex-rays.com/ida-free/)) suite, is a powerful software tool used for reverse engineering and analyzing binary code. It is widely utilized by software developers, security researchers, and malware analysts for tasks such as debugging, vulnerability research, and software auditing. In my case, I'm only curious about reversing and reading assembler every now and then.
+
+## Joining the Community
+
+To get involved with the Catppuccin project, I followed several crucial steps. I started by reading the [**"Contributing"**](https://github.com/catppuccin/catppuccin/blob/main/CONTRIBUTING.md) and [**🧱 Port Creation**](https://github.com/catppuccin/catppuccin/blob/main/docs/port-creation.md) files in the project's main repository. These files provide critical information on how to contribute and the necessary steps to take. Then, I joined the community on Discord, the primary communication platform for the project. There, I made sure to understand the server rules and I even found their were a couple of devs asking for the IDA Theme.
+
+<BlogContentImage
+  src={portCreationDiagram}
+  alt="A diagram showing the workflow of ports creation in the Catppuccin community"
+/>{" "}
+
+## The process
+
+Once I figured out how the community expect contributions I started working on the port creation. The main difficulty I faced was related to the way [CSS-based styling](https://hex-rays.com/products/ida/support/tutorials/themes/) works on IDA. At first glance, when I checked the code for the default dark and light IDA themes, they seemed like regular CSS files. However, after a closer look, I realized they had macros and other decorators that deviated from standard CSS. Quickly, I realized they were using something similar to QtSS from the Qt UI library, but adapted by the people from Hex-Rays, the company that created IDA. This created additional challenges, as the editors did not recognize the syntax correctly, resulting in warnings and false errors. This is a glimpse of one of the files:
+
+```css
+@importtheme "_base";
+@def color-crust #232634;
+@def color-rosewater-rgba	rgba(242, 213, 207, 0.19);
+/*more variable deffinitions...*/
+@def color-base-rgba	rgba(48, 52, 70, 1);
+@def color-mantle-rgba	rgba(41, 44, 60, 1);
+@def color-crust-rgba	rgba(35, 38, 52, 1);
+
+DockWidgetTitle {
+  padding: 0px;
+  margin-bottom: 2px;
+}
+
+DockWidgetTitle,
+DockAreaDragTitle {
+  border: none;
+}
+```
+
+The second problem that really affected the development experience was the fact that the IDA program simply wouldn't load files that presented errors (which is fair), but it didn’t provide any feedback (or at least I didn't find a way to get it). This increased the time I spent debugging the files, which were 500+ lines long.
+
+### Posting the contribution
+
+Once I was satisfied with the result, I created a public repo on my [GitHub account](https://github.com/ValentinTT/) and an [issue](https://github.com/catppuccin/catppuccin/issues/2044) in the Catppuccin main repo to get feedback from the community. You can see a discussion there about many topics. To make communication more fluid, we created a separate channel on the Discord server.
+
+After all these details were solved, I was included in the Catppuccin GitHub organization and then transferred the repo to this organization. The craziest part of all was seeing people giving stars to this project (something that had happened to me before, but on a smaller scale) or even making pull requests. In addition, I also received new roles in the Discord server and was invited to review other ports.
+
+## Conclusion
+
+As we compared ideas, solved problems together, and built on each other's work, I was able to appreciate the power of cooperation and the synergy that is created when people come together for a common goal.
