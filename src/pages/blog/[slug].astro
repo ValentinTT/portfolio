@@ -42,7 +42,7 @@ const placeholderGradient = randomFromArray(gradients);
 <Layout
   title={data.title}
   description={data.description}
-  bgClass="bg-background-50"
+  bgClass="bg-background-100 dark:bg-background-100"
   image={socialImage && { src: socialImage.src, alt: data.title }}
 >
   <BlogNavbar slot="navbar" />
@@ -74,7 +74,7 @@ const placeholderGradient = randomFromArray(gradients);
     class="w-full md:grid-container relative mx-auto max-w-screen-lg md:z-10 !pb-0"
   >
     <div
-      class="mx-auto w-fit max-w-full bg-background py-8 px-5 md:px-10 md:py-12 lg:p-12 lg:py-16 xl:p-16 xl:py-20"
+      class="mx-auto w-fit max-w-full bg-background-50 dark:bg-background-50 py-8 px-5 md:px-10 md:py-12 lg:p-12 lg:py-16 xl:p-16 xl:py-20"
     >
       <header class="mx-auto w-full max-w-prose text-center">
         <time

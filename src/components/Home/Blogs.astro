@@ -4,6 +4,7 @@ import BlogCard from "./Blog/BlogCard.astro";
 import { Icon } from "astro-icon/components";
 
 import * as firstContribution from "../../content/blog/first-os-contribution.mdx";
+import * as gone from "../../content/blog/gone.mdx";
 
 const makeBlogPost = (mdFile: any) => {
   return {
@@ -20,7 +21,7 @@ const makeBlogPost = (mdFile: any) => {
   };
 };
 
-const blogPost = [makeBlogPost(firstContribution)];
+const blogPost = [makeBlogPost(firstContribution), makeBlogPost(gone)];
 ---
 
 <!-- background 50, background 50-->
