@@ -1,0 +1,76 @@
+---
+title: "Gone CLI: building a CLI with Cobra and Go"
+description: Gone is a command-line utility written in Go for comparing dates and calculating date differences. This is part of my "Go Developer Roadmap" and "Backend Developer Roadmap"
+publishDate: "June 20, 2024"
+coverImage: "/src/content/blog/_images/gone/cover-image.webp"
+coverGradient: "bg-[conic-gradient(var(--tw-gradient-stops))] from-sky-400 to-blue-500"
+cardImage: "/src/content/blog/_images/gone/gone-cli.webp"
+socialImage: "/src/content/blog/_images/gone/gone-cli.webp"
+lang: "en"
+---
+
+Hey everyone! 🕓 Today I'll share my experience writing my first CLIs program in Go. This post will be shorter than usual.
+
+Jump to a specific topic:
+
+- [**2024 is for Backend**](#2024-is-for-backend)
+- [**Why a CLI?**](#why-a-cli)
+  - [**The creation: gone**](#the-creation-gone)
+  - [**Cobra: Not the Docs I'm Used To, But It's Okay**](#cobra-not-the-docs-im-used-to-but-its-okay)
+- [**Conclusion**](#conclusion)
+
+## 2024 is for Backend
+
+One of my **2024 resolutions** was to learn **backend development**. The first half of the year was quite busy as I was working full-time while finishing my bachelor's degree in Information System Engineering. But since graduating (_woo-hoo!_), I've been able to dive deeper into the topic.
+
+As always, the most difficult part is deciding where to start. To avoid wasting time procrastinating, I picked this famous [roadmap](https://roadmap.sh/backend). One of the first topics on this roadmap was **choosing a language**. I thought it would be a good opportunity to learn a new programming language, and my choices were Go, Ruby, and Rust.
+
+I decided against Rust because I felt it would be too challenging and would shift my focus from backend development to adapting to a different programming paradigm. As for choosing **Go over Ruby**, I don't have a strong justification—maybe I thought Go would have a more active community, though I'm not so sure now.
+
+## Why a CLI?
+
+Anyway, once I picked Go, I started following the [Go Roadmap](https://roadmap.sh/golang) (_yes, I really like that site_). After learning the basics, it recommended building **CLIs** before moving on to **backend development**. I think this will be a good exercise to consolidate all the concepts I've learned, so I decided to get into it.
+
+### The creation: gone
+
+That's how [gone](https://github.com/ValentinTT/gone) was born. This simple CLI program helps you calculate the difference between two dates (_or between one date and the current system date_).
+
+It accepts:
+
+- Different time formats: with and without year (_current year when omitted_), day-month-year, month-day-year, year-month-day.
+- Different separators: " " (spaces), "-" (dashes), "/" (slashes), "." (dots).
+- Flags to specify the format or the number of dates.
+
+And precent the output in:
+
+- Years, months, days.
+- Weeks.
+- Days.
+- Hours.
+
+Example of usage:
+
+```sh
+$ gone diff "5 10 2020" "17-6-2024" -f "dmy"
+
+• start date: Mon Oct 5 2020 (05/10/2020)
+• end date: Mon Jun 17 2024 (17/06/2024)
+
+Difference:
+• 3 years 8 months 13 days
+• 193 weeks 4 days
+• 1351 days
+• 32424 hours
+```
+
+Apart from that, I included some limit value tests to ensure the code works as expected.
+
+### Cobra: Not the Docs I'm Used To, But It's Okay
+
+To make this CLIs possible I used the [Cobra](https://cobra.dev/) framework. Cobra simplifies creating CLIs in Go, offering a ton of interesting features that I'd love to explore in depth in the future. However, I do have a few comments about the documentation. It felt a bit outdated, with a couple of broken links. I even made a PR to fix some of them, but I haven't received any updates on that.
+
+As the saying goes, "Every cloud has a silver lining," so it was an excellent opportunity to learn to use the [GO's packages](https://pkg.go.dev/) section. Despite the hiccups, working with Cobra has been a valuable learning experience.
+
+## Conclusion
+
+More important than what the CLI does are the things I learned about the Go programming language, how to do testing, manage external packages, and organize a project. Now I feel pretty confident to move on in my journey to learn backend development, and for my next project, I'm planning on building a REST API.
