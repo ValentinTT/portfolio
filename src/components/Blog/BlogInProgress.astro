@@ -1,0 +1,24 @@
+---
+const { default: MeCoding } = await import("/src/assets/me-coding.svg?raw");
+---
+
+<Fragment>
+  <div
+    class="bg-gradient-to-b from-transparent to-background-50 mt-[-140px] h-[150px] relative z-10"
+  >
+  </div>
+  <div
+    class="w-full bg-background-200 bg-gradient-to-t from-transparent via-background-200 to-background-50 dark:bg-background-100 dark:bg-gradient-to-t dark:from-transparent dark:via-background-100 dark:to-background-50 from-90% via-50%"
+  >
+    <div
+      class="h-full w-full bg-gradient-to-b from-transparent via-background-200 to-background-50 dark:bg-gradient-to-b dark:from-transparent dark:via-background-100 dark:to-background-50 from-90% via-0% py-14"
+    >
+      <div class="w-52 mx-auto">
+        <Fragment set:html={MeCoding} />
+      </div>
+      <h3 class="flex justify-center items-center text-text">
+        Writing in progress...
+      </h3>
+    </div>
+  </div>
+</Fragment>

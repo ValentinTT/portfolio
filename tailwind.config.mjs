@@ -8,6 +8,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      textWrap: {
+        balance: "balance",
+      },
       screens: {
         xs: "475px",
         ...defaultTheme.screens,
