@@ -8,6 +8,7 @@ import {
   resolveSocialImage,
 } from "../../content/blog/_images/_resolveImage";
 import BlogNavbar from "../../components/Navbar/BlogNavbar.astro";
+import ProjectStack from "../../components/Home/Project/ProjectStack.astro";
 
 export type Props = {
   post: CollectionEntry<"blog">;
@@ -89,7 +90,19 @@ const placeholderGradient = randomFromArray(gradients);
           {data.title}
         </h1>
       </header>
-      <hr class="mx-8 my-8 border border-primary-200 lg:my-16" />
+      <hr class="mx-8 my-8 border border-primary-200" />
+      <div class="lg:my-12">
+        <b class="mr-2">Tags:</b>
+        {
+          data.tags?.map((tag) => {
+            return (
+              <a href={`/tags/${tag}`}>
+                <ProjectStack stackName={tag} />
+              </a>
+            );
+          })
+        }
+      </div>
       <article class="prose">
         <Content />
       </article>
