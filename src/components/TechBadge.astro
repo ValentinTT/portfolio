@@ -1,9 +1,10 @@
 ---
 export interface Props {
   fromToVia?: string;
+  class?: string;
 }
 
-let { fromToVia } = Astro.props;
+let { fromToVia, class: className } = Astro.props;
 if (fromToVia === undefined)
   fromToVia = "from-primary-300 via-accent-500 to-accent-800";
 ---
@@ -12,6 +13,7 @@ if (fromToVia === undefined)
   class:list={[
     "bg-gradient-to-r p-1 bg-[length:_400%_400%] animate-border [animation-duration:_4s] rounded-md backdrop-blur inline-block m-1",
     fromToVia,
+    className,
   ]}
 >
   <span

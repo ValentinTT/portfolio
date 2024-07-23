@@ -1,27 +1,35 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../components/Navbar/BlogNavbar.astro";
+import BlogPostPreview from "../../blog/_components/BlogPostPreview.astro";
+import Pagination from "../../../components/Pagination.astro";
 import type { GetStaticPathsOptions, Page } from "astro";
-import Layout from "../../layouts/Layout.astro";
-import Navbar from "../../components/Navbar/BlogNavbar.astro";
-import Pagination from "../../components/Pagination.astro";
-import BlogPostPreview from "./_components/BlogPostPreview.astro";
+import { getTaxonomy } from "../../../content/utils";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const posts = [...(await getCollection("blog"))];
+  const values = (await getTaxonomy("blog", "tags")).map(({ value }) => value);
+  const allPost = [...(await getCollection("blog"))];
 
-  const sortedPosts = posts.sort(
-    (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
-  );
-
-  return paginate(sortedPosts, { pageSize: 4 });
+  return values.flatMap((tag) => {
+    const filteredPosts = allPost.filter((post) =>
+      post.data.tags?.includes(tag)
+    );
+    return paginate(filteredPosts, {
+      params: { tag },
+      pageSize: 4,
+    });
+  });
 }
 
 const { page } = Astro.props as {
   page: Page<CollectionEntry<"blog">>;
 };
+const { tag } = Astro.params;
 
 const allPages = [...Array(page.lastPage).keys()].map((num) => {
-  return `/blog${num === 0 ? "" : `/${String(num + 1)}`}`;
+  return `/tags/${tag}${num === 0 ? "" : `/${String(num + 1)}`}`;
 });
 ---
 
@@ -39,14 +47,12 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
     <div
       class="xl:grow lg:py-18 py-12 sm:py-14 md:py-16 xl:py-20 xl:sticky xl:top-0 flex flex-col gap-6 text-center"
     >
+      <p class="body text-astro-gray-200 md:body-large text-xl">∀ entries ∈</p>
       <h1
         class="heading-3 mx-auto max-w-screen-lg sm:heading-2 lg:heading-1 text-4xl"
       >
-        Log
+        {tag}
       </h1>
-      <p class="body text-astro-gray-200 md:body-large text-xl">
-        This is what I've been up to!
-      </p>
     </div>
     <div
       class="flex flex-col items-center justify-between gap-20 p-8 lg:p-12 xl:p-20 bg-background-300 dark:bg-background-50 max-w-5xl w-full md:w-fit md:min-h-screen"
@@ -62,8 +68,9 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
           ))
         }
       </ul>
-
-      <Pagination restRoute allPages={allPages} page={page} class="mx-auto" />
+      <div class="mt-auto">
+        <Pagination restRoute allPages={allPages} page={page} class="mx-auto" />
+      </div>
     </div>
   </div>
 </Layout>
